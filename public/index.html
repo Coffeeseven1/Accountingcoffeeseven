@@ -28,6 +28,11 @@ input.time-24{font-variant-numeric:tabular-nums;direction:ltr;text-align:left;co
 #draftInvoices{display:flex;flex-direction:column;gap:8px;width:100%;min-width:0}
 #draftInvoices .draft-row button{margin:0}
 @media(max-width:480px){.draft-row{grid-template-columns:minmax(0,1fr) 68px;gap:6px}.draft-row .draft-open{padding:10px;font-size:13px}.draft-row .draft-delete{padding:10px 5px;font-size:13px}}
+
+.orders-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}.orders-heading h3{margin:0}
+.report-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0}.report-stat{border:1px solid var(--border);border-radius:12px;padding:12px;min-width:0}.report-stat small{display:block;color:var(--muted);margin-bottom:5px}.report-stat strong{font-size:17px;overflow-wrap:anywhere}.report-section{margin-top:16px}.report-section h3{margin-bottom:8px}.report-table{width:100%;border-collapse:collapse;font-size:13px}.report-table th,.report-table td{padding:8px 5px;border-bottom:1px solid var(--border);text-align:right}
+@media(max-width:480px){.report-grid{grid-template-columns:1fr 1fr}.orders-heading .btn{width:100%}}
+@media print{body>*{visibility:hidden!important}#dailyReportModal,#dailyReportModal *{visibility:visible!important}#dailyReportModal{position:absolute;inset:0;width:100%;max-width:none;border:0;box-shadow:none;background:white;color:black}#dailyReportModal .close,#dailyReportModal .modal-actions{display:none!important}}
 </style>
 </head>
 <body>
@@ -46,7 +51,8 @@ input.time-24{font-variant-numeric:tabular-nums;direction:ltr;text-align:left;co
 <aside class="card summary"><div class="card-head"><h2>خلاصه فاکتور</h2><span class="step">۰۲</span></div><div class="total-panel"><div class="small">مبلغ نهایی قابل پرداخت</div><div class="total" id="total">۰ <small>تومان</small></div><p id="durationText">مدت سانس: ۱ ساعت</p></div>
 <div class="sumline"><span>هزینه بازی</span><strong id="gameCost">۰ تومان</strong></div><div class="sumline"><span>هزینه بوفه</span><strong id="buffetCost">۰ تومان</strong></div><div class="sumline"><span>تعداد محصولات</span><strong id="itemCount">۰ عدد</strong></div><div class="sumline"><span>شماره میز / دستگاه</span><strong id="tableSummary">—</strong></div><div class="sumline"><span>مدت سانس</span><strong id="durationSummary">۱ ساعت</strong></div>
 <button class="primary" id="startSession">▶ ثبت شروع سانس</button><button class="primary" id="finishSession" style="background:var(--red);color:white;margin-top:9px">■ ثبت پایان سانس و محاسبه</button><button class="secondary" id="saveOrder">ثبت فاکتور نهایی</button><button class="secondary" id="newInvoice">＋ افزودن فاکتور جدید</button><button class="secondary" id="clearForm">پاک کردن فاکتور فعلی</button><div class="hint" id="sessionStatus" style="margin-top:10px">سانس هنوز شروع نشده است.</div><div class="modal-section"><div class="section-title">فاکتورهای باز</div><div id="draftInvoices"></div></div><div class="hint" style="margin-top:13px">این نسخه مستقل است؛ ذخیره دائمی هنوز به بک‌اند متصل نشده است.</div>
-<div class="orders"><h3>فاکتورهای این نشست</h3><div id="orders"><div class="empty">هنوز فاکتوری ثبت نشده است.</div></div></div></aside></div><div class="footer-note">COFFEE SEVEN · MANAGEMENT CONSOLE</div>
+<div class="orders"><div class="orders-heading"><h3>فاکتورهای این نشست</h3><button class="btn btn-yellow" id="closeDay">بستن روز و تهیه گزارش</button></div><div id="orders"><div class="empty">هنوز فاکتوری ثبت نشده است.</div></div></div>
+<dialog id="dailyReportModal" class="modal"><div class="modal-head"><h2>گزارش پایان روز</h2><button class="close" id="closeReport">×</button></div><div id="dailyReportContent"></div><div class="modal-actions"><button class="btn btn-yellow" id="printReport">چاپ / ذخیره PDF</button><button class="btn btn-outline" id="doneReport">بستن گزارش</button></div></dialog></aside></div><div class="footer-note">COFFEE SEVEN · MANAGEMENT CONSOLE</div>
 </main>
 <dialog id="adminModal"><div class="modal-head"><h2>پنل مدیریت</h2><button class="close" id="closeAdmin">بستن ✕</button></div>
 <div class="manage-tabs"><button class="active" data-tab="prices">تعرفه بازی‌ها</button><button data-tab="drinks">مدیریت نوشیدنی‌ها</button><button data-tab="foods">مدیریت خوراکی‌ها</button></div>
@@ -82,7 +88,7 @@ function loadDraft(d){activeDraftId=d.id;$("game").value=d.game||"";$("tableNo")
 function renderDrafts(){let box=$("draftInvoices");if(!box)return;box.replaceChildren();if(!drafts.length){box.innerHTML='<div class="empty">فاکتور بازیِ بازی وجود ندارد؛ «افزودن فاکتور جدید» را بزن.</div>';return}drafts.forEach((d,i)=>{let row=document.createElement("div");row.className="draft-row";let b=document.createElement("button");b.className="secondary draft-open";b.style.borderColor=d.id===activeDraftId?"var(--yellow)":"#45454b";b.textContent=(d.id===activeDraftId?"● ":"")+"فاکتور "+fmt(i+1)+(d.table?" · میز "+d.table:" · بدون میز")+(d.started?" · سانس فعال":"");b.onclick=()=>{syncActiveDraft(false);loadDraft(d)};let del=document.createElement("button");del.className="secondary draft-delete";del.textContent="حذف";del.title="حذف این فاکتور باز";del.onclick=()=>{if(!confirm("فاکتور "+fmt(i+1)+" حذف شود؟ این کار قابل بازگشت نیست."))return;let wasActive=d.id===activeDraftId;drafts=drafts.filter(x=>x.id!==d.id);if(wasActive){activeDraftId=null;if(drafts.length)loadDraft(drafts[0]);else newInvoice()}else renderDrafts();toast("فاکتور باز حذف شد.")};row.append(b,del);box.append(row)})}
 function newInvoice(){syncActiveDraft(false);let d={id:"inv-"+Date.now()+"-"+Math.random().toString(36).slice(2,7),game:"",table:"",start:"18:00",end:"",guests:2,cart:[],started:false,startedAt:""};drafts.push(d);loadDraft(d);toast("فاکتور جدید ساخته شد.")}
 function renderOrders(){let box=$("orders");$("metricOrders").textContent=fmt(orders.length);$("metricSales").textContent=money(orders.reduce((s,o)=>s+o.total,0));box.replaceChildren();if(!orders.length){box.innerHTML='<div class="empty">هنوز فاکتوری ثبت نشده است.</div>';return}orders.forEach(o=>{let c=document.createElement("div");c.className="order-card";let h=document.createElement("div");h.className="order-head";let title=document.createElement("span");title.textContent="میز "+o.table+" · "+o.game;let tag=document.createElement("span");tag.className="tag";tag.textContent="نهایی‌شده";h.append(title,tag);let info=document.createElement("div");info.className="order-info";info.textContent+=$("start")?"":"";info.textContent=o.start+" تا "+o.end+" · "+fmt(o.h)+" ساعت · "+fmt(o.guests)+" نفر";let items=document.createElement("div");items.className="order-info";items.textContent=o.items.length?o.items.map(p=>p.name+" × "+fmt(p.qty)).join("، "):"بدون سفارش بوفه";let total=document.createElement("div");total.className="order-info order-total";total.textContent=money(o.total);c.append(h,info,items,total);box.append(c)})}
-function finalizeInvoice(){let game=$("game").value,table=$("tableNo").value.trim(),h=duration();if(!game){toast("نوع بازی را انتخاب کن.");$("game").focus();return}if(!table){toast("شماره میز یا دستگاه را وارد کن.");$("tableNo").focus();return}if(!$("start").value||!$("end").value){toast("ساعت شروع و پایان را وارد کن.");return}if(!validTime($("start").value)||!validTime($("end").value)){toast("ساعت‌ها باید به شکل ۲۴ ساعته مثل 18:00 باشند.");return}if(h<=0){toast("ساعت شروع و پایان را بررسی کن.");return}let total=(games[game]||0)*h+cart.reduce((s,p)=>s+p.price*p.qty,0);orders.unshift({game,table,start:$("start").value,end:$("end").value,h,guests:Math.max(1,Number($("guests").value)||1),items:cart.map(p=>({...p})),total});drafts=drafts.filter(d=>d.id!==activeDraftId);activeDraftId=null;renderOrders();renderDrafts();toast("فاکتور نهایی شد و در فهرست ثبت شد.");newInvoice()}
+function finalizeInvoice(){let game=$("game").value,table=$("tableNo").value.trim(),h=duration();if(!game){toast("نوع بازی را انتخاب کن.");$("game").focus();return}if(!table){toast("شماره میز یا دستگاه را وارد کن.");$("tableNo").focus();return}if(!$("start").value||!$("end").value){toast("ساعت شروع و پایان را وارد کن.");return}if(!validTime($("start").value)||!validTime($("end").value)){toast("ساعت‌ها باید به شکل ۲۴ ساعته مثل 18:00 باشند.");return}if(h<=0){toast("ساعت شروع و پایان را بررسی کن.");return}let total=(games[game]||0)*h+cart.reduce((s,p)=>s+p.price*p.qty,0);orders.unshift({game,table,start:$("start").value,end:$("end").value,h,guests:Math.max(1,Number($("guests").value)||1),items:cart.map(p=>({...p})),total,closedAt:new Date().toISOString()});drafts=drafts.filter(d=>d.id!==activeDraftId);activeDraftId=null;renderOrders();renderDrafts();toast("فاکتور نهایی شد و در فهرست ثبت شد.");newInvoice()}
 $("adminOpen").onclick=()=>{renderManagers();$("adminModal").showModal()};$("closeAdmin").onclick=()=>$("adminModal").close();
 document.querySelectorAll("[data-tab]").forEach(btn=>btn.onclick=()=>{document.querySelectorAll("[data-tab]").forEach(b=>b.classList.toggle("active",b===btn));$("priceTab").hidden=btn.dataset.tab!=="prices";$("drinksTab").hidden=btn.dataset.tab!=="drinks";$("foodsTab").hidden=btn.dataset.tab!=="foods"});
 $("resetPrices").onclick=()=>{if(!confirm("بازی‌ها و تعرفه‌ها به نمونه اولیه برگردند؟"))return;games={...DEFAULT_GAMES};renderGames();renderPriceInputs();calculate();toast("بازی‌ها و تعرفه نمونه بازگردانی شدند.")};
@@ -112,5 +118,31 @@ renderGames();renderProducts();renderCart();calculate();renderOrders();newInvoic
   }
   gameEl.addEventListener("change",refreshCountLabel);
   refreshCountLabel();
+})();
+
+(function(){
+ const $=id=>document.getElementById(id);
+ function report(){
+  const now=new Date(),key=now.toLocaleDateString("en-CA");
+  const todays=(orders||[]).filter(o=>(o.closedAt||"").slice(0,10)===key);
+  const total=todays.reduce((s,o)=>s+o.total,0);
+  const gameRevenue=todays.reduce((s,o)=>s+(games[o.game]||0)*o.h,0);
+  const buffetRevenue=todays.reduce((s,o)=>s+o.items.reduce((a,p)=>a+p.price*p.qty,0),0);
+  const gc={},ps={};
+  todays.forEach(o=>{gc[o.game]=(gc[o.game]||0)+1;o.items.forEach(p=>{ps[p.name]??={qty:0,revenue:0};ps[p.name].qty+=p.qty;ps[p.name].revenue+=p.price*p.qty})});
+  const box=$("dailyReportContent");box.replaceChildren();
+  const intro=document.createElement("p");intro.textContent="تاریخ گزارش: "+now.toLocaleDateString("fa-IR")+" · فاکتورهای نهایی‌شده: "+fmt(todays.length);box.append(intro);
+  const grid=document.createElement("div");grid.className="report-grid";
+  [["مجموع فروش",money(total)],["درآمد بازی‌ها",money(gameRevenue)],["درآمد بوفه",money(buffetRevenue)],["تعداد فاکتور",fmt(todays.length)]].forEach(([l,v])=>{let c=document.createElement("div");c.className="report-stat";let s=document.createElement("small");s.textContent=l;let b=document.createElement("strong");b.textContent=v;c.append(s,b);grid.append(c)});box.append(grid);
+  function section(title,rows,heads){let sec=document.createElement("section");sec.className="report-section";let h=document.createElement("h3");h.textContent=title;sec.append(h);if(!rows.length){let e=document.createElement("p");e.textContent="اطلاعاتی برای نمایش وجود ندارد.";sec.append(e);box.append(sec);return}let t=document.createElement("table");t.className="report-table";let tr=document.createElement("tr");heads.forEach(x=>{let th=document.createElement("th");th.textContent=x;tr.append(th)});t.append(tr);rows.forEach(row=>{let r=document.createElement("tr");row.forEach(x=>{let td=document.createElement("td");td.textContent=x;r.append(td)});t.append(r)});sec.append(t);box.append(sec)}
+  section("آمار بازی‌ها",Object.entries(gc).map(([n,c])=>[n,fmt(c)+" فاکتور"]),["بازی","تعداد"]);
+  section("فروش بوفه",Object.entries(ps).sort((a,b)=>b[1].revenue-a[1].revenue).map(([n,v])=>[n,fmt(v.qty),money(v.revenue)]),["محصول","تعداد","فروش"]);
+  section("فاکتورهای روز",todays.map(o=>[o.table,o.game,o.start+" تا "+o.end,money(o.total)]),["میز","بازی","زمان","مبلغ"]);
+  $("dailyReportModal").showModal();
+ }
+ $("closeDay").addEventListener("click",report);
+ $("closeReport").addEventListener("click",()=>$("dailyReportModal").close());
+ $("doneReport").addEventListener("click",()=>$("dailyReportModal").close());
+ $("printReport").addEventListener("click",()=>window.print());
 })();
 </script></body></html>
