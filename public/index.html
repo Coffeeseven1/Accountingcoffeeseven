@@ -1,148 +1,627 @@
 <!doctype html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#111111">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101012">
 <title>Coffee Seven | مدیریت کافه‌گیم</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:dark;--bg:#0c0c0e;--panel:#171719;--line:#303035;--red:#f04438;--yellow:#ffca2c;--text:#f6f6f7;--muted:#a1a1aa;--green:#4ade80;--radius:18px}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 95% -5%,#46151470,transparent 38%),var(--bg);color:var(--text);font-family:"Vazirmatn",Tahoma,Arial,sans-serif;line-height:1.75;font-feature-settings:"ss01" on}button,input,select{font:inherit;letter-spacing:0}button{cursor:pointer;transition:filter .15s,transform .15s}button:hover{filter:brightness(1.08)}button:active{transform:scale(.99)}input,select{min-width:0}
-.topbar{height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,54px);background:#111113ed;border-bottom:1px solid #343034;position:sticky;top:0;z-index:20;backdrop-filter:blur(16px)}.brand{display:flex;align-items:center;gap:12px;font-weight:900;font-size:19px;line-height:1.25}.brand-mark{display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:linear-gradient(145deg,var(--red),#941c1c);box-shadow:0 8px 28px #f0443828;color:white;font-size:25px}.brand small{display:block;font:700 9px/1.5 Arial,sans-serif;letter-spacing:2px;color:var(--muted);margin-top:4px}.btn{border:1px solid var(--line);background:#252528;color:var(--text);border-radius:11px;padding:10px 15px;font-weight:700}.btn-yellow{background:var(--yellow);border-color:var(--yellow);color:#181818}.btn-red{background:var(--red);border-color:var(--red);color:white}.btn-outline{background:transparent;border:1px solid #555;color:var(--text)}
-.shell{width:min(1180px,calc(100% - 30px));margin:30px auto 64px}.intro{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:23px}.eyebrow{color:var(--yellow);font-weight:800;font-size:12px}.intro h1{font-size:clamp(27px,4vw,37px);line-height:1.35;margin:7px 0}.intro p{margin:0;color:var(--muted);font-size:13px}.live{white-space:nowrap;border:1px solid #4ade8038;color:var(--green);background:#4ade8010;border-radius:999px;padding:8px 12px;font-size:11px;font-weight:700}
-.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-bottom:18px}.metric{border:1px solid var(--line);border-radius:15px;background:linear-gradient(145deg,#1d1d20,#141416);padding:15px 18px}.metric .label{color:var(--muted);font-size:11px}.metric .value{font-size:22px;font-weight:900;margin-top:5px}.red{color:var(--red)}.yellow{color:var(--yellow)}
-.layout{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(300px,.75fr);gap:17px;align-items:start}.card{background:linear-gradient(145deg,#1b1b1e,#151517);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:0 15px 42px #0002}.card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px}.card-head h2{font-size:16px;margin:0;font-weight:800}.step{width:31px;height:31px;border-radius:10px;display:grid;place-items:center;color:var(--red);background:#f0443818;font-size:12px;font-weight:900}
-.fields{display:grid;grid-template-columns:1fr 1fr;gap:15px}.field{display:flex;flex-direction:column;gap:7px;min-width:0}.field.full{grid-column:1/-1}label{font-size:12px;color:#d4d4d8;font-weight:700}.control{width:100%;border:1px solid #3b3b40;background:#101012;border-radius:11px;color:var(--text);padding:12px 13px;min-height:47px;outline:none;transition:border-color .15s,box-shadow .15s}.control:focus{border-color:var(--yellow);box-shadow:0 0 0 3px #ffca2c17}.control::placeholder{color:#6e6e76}.hint{font-size:11px;color:var(--muted);line-height:1.9}.section{border-top:1px solid var(--line);padding-top:20px;margin-top:22px}.section-title{font-size:13px;font-weight:800;display:flex;align-items:center;gap:9px;margin-bottom:14px}.section-title:before{content:"";width:4px;height:17px;border-radius:4px;background:var(--red)}
-.summary{position:sticky;top:94px}.total-panel{border-radius:15px;padding:18px;background:linear-gradient(135deg,#ed4036,#a51d1d);margin-bottom:17px}.total-panel .small{font-size:12px;color:#ffe2df}.total{font-size:30px;font-weight:900;line-height:1.5;margin:7px 0;overflow-wrap:anywhere}.total small{font-size:12px;font-weight:600}.total-panel p{margin:0;color:#ffe2df;font-size:11px}.sumline{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid #333337;font-size:12px}.sumline span{color:var(--muted)}.sumline strong{text-align:left}.primary{width:100%;margin-top:17px;background:var(--yellow);color:#161616;border:0;border-radius:12px;padding:14px;font-weight:900}.secondary{width:100%;margin-top:9px;background:transparent;border:1px solid #45454b;color:var(--text);border-radius:12px;padding:11px;font-weight:700}
-.cart-list{display:grid;gap:8px;margin-top:12px}.cart-item{display:flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid #343439;background:#111113;padding:10px 12px;border-radius:11px;font-size:12px}.cart-item .muted{color:var(--muted);font-size:10px}.remove{background:transparent;border:0;color:#ff7068;padding:4px 6px;font-size:11px}.orders{margin-top:19px}.orders h3{font-size:14px;margin:0 0 12px}.empty{border:1px dashed #414147;border-radius:12px;padding:22px 10px;text-align:center;color:var(--muted);font-size:12px;line-height:2}.order-card{border:1px solid #343439;border-radius:12px;padding:12px;margin-bottom:9px;background:#111113}.order-head{display:flex;justify-content:space-between;gap:8px;font-size:12px;font-weight:800}.tag{font-size:10px;color:var(--green);background:#4ade8015;padding:4px 8px;border-radius:999px;white-space:nowrap}.order-info{color:var(--muted);font-size:11px;line-height:2;margin-top:7px}.order-total{color:var(--yellow);font-weight:800}
-dialog{width:min(680px,calc(100% - 22px));max-height:90vh;overflow:auto;background:#19191c;color:var(--text);border:1px solid #44444b;border-radius:18px;padding:22px}dialog::backdrop{background:#000c;backdrop-filter:blur(5px)}.modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:13px}.modal-head h2{font-size:18px;margin:0}.close{border:1px solid #444;background:#252528;color:white;border-radius:9px;padding:6px 11px}.price-grid{display:grid;grid-template-columns:1fr 140px;gap:10px;align-items:center}.price-grid label{font-size:12px}.price-grid input{padding:9px;min-height:40px}.modal-section{margin-top:19px;padding-top:16px;border-top:1px solid #37373b}.modal-actions{display:flex;gap:10px;margin-top:18px}.modal-actions>*{flex:1}.manage-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}.manage-tabs button{border:1px solid #414147;background:#111113;color:#ddd;padding:9px 13px;border-radius:10px;font-size:12px}.manage-tabs button.active{background:var(--yellow);border-color:var(--yellow);color:#171717;font-weight:900}.product-form{display:grid;grid-template-columns:1.2fr .8fr .7fr auto;gap:9px;align-items:end}.product-form .control{min-height:43px;padding:9px}.product-row{display:grid;grid-template-columns:minmax(0,1fr) 105px auto auto;gap:8px;align-items:center;border:1px solid #35353b;background:#111113;border-radius:11px;padding:10px;margin-top:8px}.product-row .name{font-size:12px;font-weight:700}.product-row .category{font-size:10px;color:var(--muted)}.product-row input{min-height:38px;padding:7px;font-size:12px}.product-row button{font-size:11px;padding:8px}.toast{display:none;position:fixed;bottom:18px;left:18px;z-index:50;background:#252528;border:1px solid #4a4a50;border-radius:12px;padding:12px 16px;box-shadow:0 10px 35px #0009;font-size:12px;max-width:calc(100% - 36px)}.toast.show{display:block}.footer-note{text-align:center;color:#696970;font-size:10px;margin-top:23px}
-@media(max-width:850px){.layout{grid-template-columns:1fr}.summary{position:static}.metrics{gap:9px}.metric{padding:13px}.metric .value{font-size:19px}.product-form{grid-template-columns:1fr 1fr}.product-form .field:last-child{grid-column:1/-1}}
-@media(max-width:520px){.topbar{height:67px;padding:0 13px}.brand{font-size:15px;gap:8px}.brand-mark{width:38px;height:38px;border-radius:12px}.brand small{font-size:8px;letter-spacing:1px}.btn{padding:9px 10px;font-size:11px}.shell{width:calc(100% - 22px);margin-top:23px}.intro{align-items:flex-start;flex-direction:column}.metrics{grid-template-columns:1fr 1fr}.metric:last-child{grid-column:1/-1}.card{padding:16px}.fields{grid-template-columns:1fr}.field.full{grid-column:auto}.total{font-size:27px}.price-grid{grid-template-columns:1fr 110px}.modal-actions{flex-direction:column}.modal-actions button{width:100%}.product-row{grid-template-columns:minmax(0,1fr) 85px auto;}.product-row .category{display:none}.product-row .delete-product{grid-column:3}.product-form{grid-template-columns:1fr 1fr}.product-form .field:first-child{grid-column:1/-1}}
-.product-row{grid-template-columns:minmax(0,1fr) 105px auto auto}.product-row .name{overflow-wrap:anywhere}#draftInvoices{display:grid;gap:5px}#draftInvoices .secondary{margin-top:0!important;text-align:right}.section-title{line-height:1.6}
+:root{--bg:#0d0d0f;--panel:#19191c;--panel2:#222226;--line:#35353b;--text:#f7f7f8;--muted:#a1a1aa;--red:#ef4940;--yellow:#ffcb35;--green:#4ade80;--blue:#60a5fa;--radius:17px}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 95% -5%,#5a171b55,transparent 35%),var(--bg);color:var(--text);font-family:Vazirmatn,Tahoma,sans-serif;line-height:1.7}body.light{--bg:#f3f4f6;--panel:#fff;--panel2:#f4f4f5;--line:#dedee3;--text:#18181b;--muted:#666672;background:#f3f4f6}button,input,select{font:inherit}button{cursor:pointer}input,select{min-width:0}.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:12px max(16px,calc((100% - 1280px)/2));display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{display:flex;align-items:center;gap:11px;font-weight:900}.logo{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(140deg,var(--red),#8f1c1c);font-size:24px}.brand small{display:block;font:700 9px Arial;letter-spacing:2px;color:var(--muted)}.actions{display:flex;gap:7px;flex-wrap:wrap}.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:9px 13px;border-radius:10px;font-size:12px;font-weight:800}.primary{background:var(--yellow);border-color:var(--yellow);color:#171717}.danger{background:var(--red);border-color:var(--red);color:#fff}.shell{max-width:1280px;width:calc(100% - 30px);margin:25px auto 60px}.hero{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:18px}.hero h1{font-size:clamp(25px,4vw,35px);margin:5px 0}.hero p,.muted{color:var(--muted);font-size:12px;margin:0}.eyebrow{color:var(--yellow);font-size:11px;font-weight:900}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin:16px 0}.metric,.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:17px}.metric small{color:var(--muted);font-size:11px}.metric strong{display:block;font-size:21px;margin-top:5px}.metric strong.gold{color:var(--yellow)}.nav{display:flex;gap:7px;flex-wrap:wrap;margin:17px 0}.nav button.active{background:var(--yellow);color:#171717;border-color:var(--yellow)}.view{display:none}.view.active{display:block}.grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(300px,.7fr);gap:14px;align-items:start}.card h2{font-size:16px;margin:0 0 14px}.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:5px}.field.full{grid-column:1/-1}label{font-size:11px;color:var(--muted);font-weight:800}.control{width:100%;border:1px solid var(--line);background:var(--bg);color:var(--text);border-radius:10px;padding:10px 11px;min-height:42px;outline:none}.control:focus{border-color:var(--yellow)}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.row>*{flex:1}.divider{height:1px;background:var(--line);margin:17px 0}.summary{position:sticky;top:90px}.totalbox{background:linear-gradient(135deg,#ed4a40,#9d2020);border-radius:14px;padding:16px;margin-bottom:12px}.totalbox small{color:#ffe0dc}.totalbox strong{display:block;font-size:27px}.line{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:12px}.line span{color:var(--muted)}.wide{width:100%;margin-top:8px}.list{display:grid;gap:8px}.item{border:1px solid var(--line);background:var(--panel2);border-radius:12px;padding:11px;display:flex;justify-content:space-between;align-items:center;gap:9px}.item strong{font-size:12px}.item small{display:block;color:var(--muted);font-size:10px}.pill{font-size:10px;padding:4px 8px;border-radius:20px;background:#4ade8019;color:var(--green);white-space:nowrap}.pill.red{background:#ef494019;color:var(--red)}.pill.yellow{background:#ffcb351c;color:#d69b00}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:11px;min-width:620px}th,td{text-align:right;padding:10px;border-bottom:1px solid var(--line);white-space:nowrap}th{color:var(--muted);font-weight:800}td .btn{padding:5px 8px;font-size:10px}.empty{border:1px dashed var(--line);padding:22px;text-align:center;color:var(--muted);font-size:12px;border-radius:12px}.device-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.device{background:var(--panel2);border:1px solid var(--line);border-radius:13px;padding:13px}.device.busy{border-color:#ef494088}.device strong{font-size:13px}.device .timer{font-size:18px;font-weight:900;margin:6px 0}.device small{color:var(--muted);font-size:10px}.chart{display:flex;align-items:end;gap:8px;height:170px;padding:12px 4px 0;border-bottom:1px solid var(--line)}.barcol{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:end;height:100%;gap:5px;min-width:0}.bar{width:min(30px,80%);background:linear-gradient(var(--yellow),#e98b21);border-radius:7px 7px 0 0;min-height:2px}.barcol small{font-size:9px;color:var(--muted)}.barcol b{font-size:9px}.toast{position:fixed;bottom:18px;left:18px;background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:11px 15px;z-index:40;display:none;max-width:90vw;font-size:12px;box-shadow:0 10px 30px #0005}.toast.show{display:block}.modal{border:1px solid var(--line);border-radius:16px;background:var(--panel);color:var(--text);width:min(780px,calc(100% - 20px));max-height:90vh;overflow:auto;padding:20px}.modal::backdrop{background:#000b;backdrop-filter:blur(4px)}.modalhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.modalhead h2{margin:0}.close{background:transparent;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:5px 10px}.subtabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:13px}.subtabs button.active{background:var(--yellow);color:#111}.foot{text-align:center;color:var(--muted);font-size:10px;margin:25px}.hidden{display:none!important}.customer-card{border:1px solid var(--line);padding:12px;border-radius:12px;background:var(--panel2)}.lowstock{color:var(--red);font-weight:900}.invoice-paper{background:#fff;color:#111;padding:22px;border-radius:8px;direction:rtl}.invoice-paper h2{color:#111}.invoice-paper table{min-width:0;color:#111}.invoice-paper td,.invoice-paper th{border-color:#ddd}.invoice-paper .muted{color:#555}
+@media(max-width:850px){.grid{grid-template-columns:1fr}.summary{position:static}.metrics{grid-template-columns:repeat(2,1fr)}.device-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:540px){.top{padding:9px 12px}.brand{font-size:13px}.logo{width:36px;height:36px}.actions .btn{padding:7px 9px;font-size:10px}.shell{width:calc(100% - 20px);margin-top:17px}.hero{align-items:start;flex-direction:column}.metric{padding:12px}.metric strong{font-size:17px}.card{padding:13px}.fields{grid-template-columns:1fr}.field.full{grid-column:auto}.device-grid{grid-template-columns:1fr 1fr}.nav button{font-size:10px;padding:8px}.totalbox strong{font-size:23px}}
+@media print{body{background:#fff;color:#111}.top,.nav,.hero,.metrics,.no-print,.foot{display:none!important}.shell{width:100%;margin:0}.view{display:none!important}#printArea{display:block!important}.invoice-paper{box-shadow:none}.modal{position:static;display:block!important;max-height:none;border:0;width:100%}}
 
-input.time-24{font-variant-numeric:tabular-nums;direction:ltr;text-align:left;color-scheme:dark}
-.time-format-note{font-size:11px;color:var(--muted);margin-top:4px}
-.draft-row{display:grid;grid-template-columns:minmax(0,1fr) 76px;gap:8px;align-items:center;margin-top:7px;width:100%;min-width:0}
-.draft-row .draft-open{display:block;width:100%;min-width:0;white-space:normal;overflow-wrap:anywhere;text-align:right;line-height:1.7;padding:12px 14px}
-.draft-row .draft-delete{display:flex;align-items:center;justify-content:center;width:100%;min-width:0;white-space:nowrap;padding:12px 8px;border-color:#a33;color:#ff7474}
-#draftInvoices{display:flex;flex-direction:column;gap:8px;width:100%;min-width:0}
-#draftInvoices .draft-row button{margin:0}
-@media(max-width:480px){.draft-row{grid-template-columns:minmax(0,1fr) 68px;gap:6px}.draft-row .draft-open{padding:10px;font-size:13px}.draft-row .draft-delete{padding:10px 5px;font-size:13px}}
+/* UI polish pass: restore a consistent, familiar control system */
+:root{--radius:15px;--control-h:44px}
+body{font-size:14px}
+.top{min-height:68px}
+.brand{letter-spacing:.1px}
+.brand .logo{box-shadow:0 5px 18px #ef494033}
+.shell{max-width:1240px}
+.hero{margin-bottom:20px}
+.hero h1{letter-spacing:-.5px}
+.nav{padding:7px;background:var(--panel);border:1px solid var(--line);border-radius:14px;gap:6px}
+.nav button{border:0;background:transparent;padding:10px 15px;border-radius:9px;transition:background .18s,color .18s,transform .18s}
+.nav button:hover{background:var(--panel2);transform:translateY(-1px)}
+.nav button.active{background:var(--yellow);color:#171717;box-shadow:0 3px 10px #ffcb3528}
+.btn{min-height:38px;padding:8px 13px;border-radius:9px;font-size:12px;font-weight:800;transition:filter .16s,transform .16s,box-shadow .16s}
+.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
+.btn:focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
+.btn.primary{box-shadow:0 4px 12px #ffcb3525}
+.btn.danger{box-shadow:0 4px 12px #ef49401c}
+.control{min-height:var(--control-h);border-radius:9px;padding:9px 12px;font-size:13px}
+.control:hover{border-color:#777780}
+.card,.metric{box-shadow:0 5px 18px #0000000a}
+.card{padding:19px}
+.card h2{font-size:15px;display:flex;align-items:center;gap:8px}
+.card h2:before{content:"";width:4px;height:17px;border-radius:5px;background:var(--yellow);display:inline-block}
+.metric{padding:16px 18px}
+.metric strong{font-size:20px;letter-spacing:-.3px}
+.item{padding:12px 13px}
+.device{padding:15px;transition:border-color .18s,transform .18s}
+.device:hover{transform:translateY(-2px)}
+.device .pill{display:inline-block;margin-top:8px}
+.summary{border-top:3px solid var(--yellow)}
+.totalbox{box-shadow:0 7px 20px #ef494022}
+.line{padding:9px 1px}
+.tablewrap{border:1px solid var(--line);border-radius:12px;margin-top:10px}
+table{min-width:640px}
+th{background:var(--panel2);position:sticky;top:0}
+td,th{padding:12px 11px}
+tbody tr:hover{background:color-mix(in srgb,var(--panel2) 70%,transparent)}
+.fields{gap:13px}
+.field{gap:6px}
+label{font-size:11px}
+.row{gap:9px}
+.divider{margin:19px 0}
+.empty{background:var(--panel2)}
+.subtabs{padding:5px;background:var(--panel2);border-radius:11px}
+.subtabs button{border:0}
+.modal{box-shadow:0 25px 80px #0008}
+.toast{box-shadow:0 12px 35px #0005}
+.foot{padding-top:10px}
+@media(max-width:850px){
+ .nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+ .nav button{padding:9px 7px}
+ .card{padding:15px}
+}
+@media(max-width:540px){
+ .top{min-height:60px}
+ .brand{gap:8px}
+ .actions{gap:5px}
+ .actions .btn{min-height:34px;padding:6px 8px}
+ .nav{grid-template-columns:repeat(2,minmax(0,1fr));padding:6px}
+ .nav button{font-size:11px;min-height:38px}
+ .metric{padding:12px}
+ .metric strong{font-size:16px}
+ .btn{min-height:37px}
+ .row>.btn{flex:1 1 auto}
+ .card h2{margin-bottom:12px}
+}
 
-.orders-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}.orders-heading h3{margin:0}
-.report-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0}.report-stat{border:1px solid var(--border);border-radius:12px;padding:12px;min-width:0}.report-stat small{display:block;color:var(--muted);margin-bottom:5px}.report-stat strong{font-size:17px;overflow-wrap:anywhere}.report-section{margin-top:16px}.report-section h3{margin-bottom:8px}.report-table{width:100%;border-collapse:collapse;font-size:13px}.report-table th,.report-table td{padding:8px 5px;border-bottom:1px solid var(--border);text-align:right}
-@media(max-width:480px){.report-grid{grid-template-columns:1fr 1fr}.orders-heading .btn{width:100%}}
-@media print{body>*{visibility:hidden!important}#dailyReportModal,#dailyReportModal *{visibility:visible!important}#dailyReportModal{position:absolute;inset:0;width:100%;max-width:none;border:0;box-shadow:none;background:white;color:black}#dailyReportModal .close,#dailyReportModal .modal-actions{display:none!important}}
-</style>
-</head>
+
+/* Header alignment refinement */
+.top{display:grid;grid-template-columns:minmax(190px,1fr) auto;align-items:center;gap:16px}
+.top .brand{grid-column:1;grid-row:1;justify-self:start;white-space:nowrap}
+.top .actions{grid-column:2;grid-row:1;justify-content:flex-end;align-items:center;gap:8px;flex-wrap:nowrap}
+.top .actions .btn{white-space:nowrap;min-height:38px;display:inline-flex;align-items:center;justify-content:center}
+@media(max-width:600px){
+ .top{grid-template-columns:1fr;gap:9px;padding:9px 12px}
+ .top .brand{grid-column:1;grid-row:1;justify-self:center}
+ .top .actions{grid-column:1;grid-row:2;justify-content:center;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;gap:7px}
+ .top .actions .btn{width:100%;min-width:0;padding:7px 5px;font-size:10px;white-space:nowrap}
+}
+@media(max-width:360px){
+ .top .actions .btn{font-size:9px}
+}
+
+#confirmInvoiceSummary .line:last-of-type{border-bottom:0}#confirmInvoiceModal .row .btn{flex:1}
+
+/* Verified visual refinement for customer, invoice, reports and print */
+.customer-card{padding:14px;border-radius:14px;background:linear-gradient(145deg,var(--panel2),var(--panel));border:1px solid var(--line);box-shadow:0 4px 14px #0000000b}
+.customer-top{display:flex;align-items:center;gap:10px}.customer-avatar{width:40px;height:40px;border-radius:12px;background:linear-gradient(140deg,var(--red),#7f1d1d);display:grid;place-items:center;color:#fff;font-size:18px;font-weight:900}.customer-id{display:flex;flex-direction:column;flex:1;min-width:0}.customer-id strong{font-size:13px}.customer-id small,.customer-stats small{font-size:10px;color:var(--muted)}.customer-level{background:#ffcb3520;color:#d49b00;padding:5px 9px;border-radius:20px;font-size:10px;font-weight:900}.customer-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:12px 0}.customer-stats>div{padding:8px;background:var(--bg);border:1px solid var(--line);border-radius:9px;display:flex;flex-direction:column;gap:3px;min-width:0}.customer-stats b{font-size:11px;overflow-wrap:anywhere}.customer-history{border-top:1px solid var(--line);padding-top:8px;font-size:11px}.customer-history summary{cursor:pointer;color:var(--yellow);font-weight:800}
+.customer-actions{display:flex;gap:8px;margin-top:10px;padding-top:9px;border-top:1px solid var(--line)}.customer-actions .btn{flex:1;font-size:11px;padding:8px}.customer-actions .edit{border-color:#d6ad32;color:var(--yellow);background:#ffcf3210}
+.customer-form-state{font-size:11px;color:var(--yellow);margin-top:7px;min-height:16px}
+#view-orders .card{padding:16px;overflow:visible}
+#view-orders .orders-toolbar{display:grid;grid-template-columns:minmax(0,1fr) minmax(190px,280px) minmax(145px,180px);gap:9px;align-items:center;margin-bottom:15px}
+#view-orders .orders-toolbar h2{margin:0;font-size:16px;display:flex;align-items:center;gap:9px}
+#view-orders .orders-toolbar h2:before{content:"";width:4px;height:21px;border-radius:5px;background:var(--yellow)}
+#ordersTable{display:grid;gap:9px;min-width:0}
+.invoice-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;padding:13px 14px;border:1px solid var(--line);border-radius:13px;background:linear-gradient(135deg,var(--panel2),var(--panel));min-width:0;transition:border-color .2s,transform .2s}
+.invoice-row:hover{border-color:#e6b92e;transform:translateY(-1px)}
+.invoice-main{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px 14px;align-items:center;min-width:0}
+.invoice-cell{display:flex;flex-direction:column;gap:3px;min-width:0}
+.invoice-cell small{font-size:9px;color:var(--muted)}
+.invoice-cell b{font-size:11px;overflow-wrap:anywhere;line-height:1.6}
+.invoice-cell.invoice-customer b{font-size:12px}
+.invoice-id{color:var(--yellow)}
+.invoice-amount{color:var(--yellow);font-size:13px!important;white-space:nowrap}
+.invoice-actions{display:flex;flex-direction:column;justify-content:center;align-items:stretch;gap:6px;min-width:104px}
+.invoice-actions .btn{font-size:10px;padding:6px 9px;min-height:31px;white-space:nowrap}
+.invoice-status{display:inline-flex;align-items:center;gap:5px;width:max-content;border-radius:20px;padding:4px 9px;font-size:9px;font-weight:900;white-space:nowrap}
+.invoice-status:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.invoice-status.paid{color:#39c77b;background:#39c77b18}
+.invoice-status.unpaid{color:#ff766d;background:#ff766d18}
+.invoice-date{font-size:10px;color:var(--muted)}
+@media(max-width:600px){#view-orders .card{padding:11px}#view-orders .orders-toolbar{grid-template-columns:1fr 1fr;gap:8px}#view-orders .orders-toolbar h2{grid-column:1/-1;margin-bottom:3px}#view-orders .orders-toolbar input{grid-column:1/-1;max-width:none!important}#view-orders .orders-toolbar select{grid-column:1/-1;max-width:none!important}.invoice-row{grid-template-columns:1fr;gap:9px;padding:11px}.invoice-main{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 12px}.invoice-actions{display:grid;grid-template-columns:1fr 1fr;min-width:0}.invoice-actions .btn{width:100%}.invoice-amount{font-size:12px!important}}
+@media(max-width:360px){.invoice-main{grid-template-columns:1fr 1fr}.invoice-cell b{font-size:10px}.invoice-actions .btn{font-size:9px;padding:5px 6px}}
+#reportResult .metrics{gap:9px;margin:13px 0}#reportResult .metric{border-radius:12px;background:linear-gradient(145deg,var(--panel2),var(--panel));border-top:2px solid var(--yellow)}#reportResult .metric strong{font-size:16px}#reportResult .tablewrap{margin-top:13px}
+.invoice-paper{font-family:Vazirmatn,Tahoma,sans-serif;background:#fff;color:#202027;padding:26px;border-radius:11px;max-width:760px;margin:auto;box-shadow:0 8px 24px #00000012;direction:rtl}.invoice-brand{display:flex;align-items:center;gap:11px;padding-bottom:16px;border-bottom:2px solid #29292d}.invoice-mark{width:46px;height:46px;background:#a91f25;color:#fff;border-radius:13px;display:grid;place-items:center;font-size:26px;font-weight:900}.invoice-brand h2{margin:0;color:#202027;font-size:18px;letter-spacing:1px}.invoice-brand small{font:700 9px Arial;letter-spacing:1.5px;color:#777}.invoice-number{margin-right:auto;text-align:left;display:flex;flex-direction:column}.invoice-number small,.invoice-info small{font-size:10px;color:#777}.invoice-number b{font-size:18px;color:#a91f25}.invoice-title{display:flex;justify-content:space-between;align-items:center;margin:17px 0 11px}.invoice-title strong{font-size:15px}.invoice-title span{font-size:10px;color:#777}.invoice-info{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;background:#f6f6f7;border:1px solid #e6e6e8;border-radius:9px;padding:12px}.invoice-info>div{display:flex;flex-direction:column;gap:3px}.invoice-info b{font-size:11px}.invoice-section-title{font-size:13px;margin:18px 0 8px}.invoice-items{width:100%;min-width:0;border-collapse:collapse;font-size:10px}.invoice-items th{background:#f0f0f2;color:#444;position:static}.invoice-items td,.invoice-items th{padding:9px 7px;border:1px solid #e5e5e7}.invoice-totals{width:min(100%,340px);margin:15px 0 0 auto}.invoice-totals>div{display:flex;justify-content:space-between;padding:7px 2px;border-bottom:1px solid #eee;font-size:11px}.invoice-totals span{color:#666}.invoice-totals .invoice-grand{margin-top:7px;padding:11px;background:#a91f25;color:#fff;border-radius:8px;font-size:13px}.invoice-totals .invoice-grand span{color:#fff}.invoice-footer{display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:11px;border-top:1px dashed #ccc}.invoice-footer p{font-size:11px;color:#555}.invoice-payment{padding:5px 10px;border-radius:20px;font-size:10px;font-weight:800}.invoice-payment.is-paid{background:#e5f7eb;color:#16803d}.invoice-payment.is-unpaid{background:#fff0e8;color:#b84a18}
+@media(max-width:540px){.customer-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.invoice-paper{padding:15px}.invoice-info{grid-template-columns:repeat(2,minmax(0,1fr))}.invoice-brand h2{font-size:15px}}
+
+
+/* COFFEE SEVEN — premium dark invoice skin */
+#invoiceModal{width:min(760px,calc(100% - 16px));padding:16px;background:#101013;border:1px solid #33343a;border-radius:22px;color:#f7f7f8;box-shadow:0 24px 80px #000b}
+#invoiceModal .modalhead{padding:2px 2px 12px;border-bottom:1px solid #292a30}
+#invoiceModal .modalhead h2{font-size:17px;font-weight:900}
+#invoiceModal .close{border-color:#383940;color:#ddd;background:#191a1f;padding:7px 12px}
+#invoiceModal #invoiceDetail{padding:3px 0}
+#invoiceModal .invoice-paper{max-width:100%;padding:18px;background:linear-gradient(155deg,#17181c,#0d0e11 70%);border:1px solid #34353b;border-radius:17px;color:#f5f5f6;box-shadow:0 12px 35px #0007;overflow:hidden}
+#invoiceModal .invoice-brand{position:relative;display:flex;align-items:center;gap:12px;padding:7px 2px 17px;border-bottom:2px solid transparent;border-image:linear-gradient(90deg,#ffcf32,#8c6812,#ffcf32) 1}
+#invoiceModal .invoice-mark{width:48px;height:48px;flex:0 0 48px;border-radius:14px;background:linear-gradient(145deg,#d72b32,#8e111b);box-shadow:0 5px 18px #b91c1c44;font-size:28px}
+#invoiceModal .invoice-brand h2{font:900 19px Arial,sans-serif;letter-spacing:1.1px;color:#fff}
+#invoiceModal .invoice-brand small{font:700 8px Arial,sans-serif;letter-spacing:2px;color:#a8a8b0}
+#invoiceModal .invoice-number{margin-right:auto;text-align:left}
+#invoiceModal .invoice-number small,#invoiceModal .invoice-info small{color:#9b9ca5;font-size:9px}
+#invoiceModal .invoice-number b{display:inline-block;color:#ffcf32;font-size:17px}
+#invoiceModal .invoice-title{margin:15px 1px 11px}
+#invoiceModal .invoice-title strong{font-size:16px;color:#fff}
+#invoiceModal .invoice-title span{font-size:9px;color:#a2a3aa}
+#invoiceModal .invoice-info{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px;padding:13px;background:#1b1c21;border:1px solid #35363d;border-radius:13px}
+#invoiceModal .invoice-info>div{min-width:0;gap:3px}
+#invoiceModal .invoice-info b{font-size:11px;color:#f2f2f4;overflow-wrap:anywhere}
+#invoiceModal .invoice-section-title{font-size:14px;color:#fff;margin:17px 0 8px}
+#invoiceModal .invoice-items{width:100%;min-width:0;table-layout:auto;border-collapse:separate;border-spacing:0;font-size:10px;border:1px solid #37383e;border-radius:10px;overflow:hidden;color:#f4f4f5}
+#invoiceModal .invoice-items th{background:#24252b;color:#d0d0d5;font-size:9px;padding:9px 6px;border-color:#3a3b42;white-space:normal}
+#invoiceModal .invoice-items td{background:#191a1f;color:#ededf0;padding:10px 6px;border-color:#33343a;white-space:normal;overflow-wrap:anywhere}
+#invoiceModal .invoice-totals{width:100%;margin:13px 0 0}
+#invoiceModal .invoice-totals>div{padding:8px 4px;border-bottom:1px solid #303138;color:#f0f0f2;font-size:11px}
+#invoiceModal .invoice-totals span{color:#a8a9b1}
+#invoiceModal .invoice-totals b{color:#f7f7f8;text-align:left;direction:rtl}
+#invoiceModal .invoice-totals .invoice-grand{display:flex;align-items:center;gap:8px;margin-top:9px;padding:13px 12px;background:linear-gradient(100deg,#ffdc42,#f2b900);color:#151515;border-radius:12px;border:0;font-size:13px}
+#invoiceModal .invoice-totals .invoice-grand span,#invoiceModal .invoice-totals .invoice-grand b{color:#151515;font-weight:900}
+#invoiceModal .invoice-totals .invoice-grand b{font-size:14px}
+#invoiceModal .invoice-footer{margin-top:15px;padding-top:12px;border-top:1px solid #34353b}
+#invoiceModal .invoice-footer p{color:#aeb0b7;font-size:10px}
+#invoiceModal .invoice-payment{padding:5px 10px;border-radius:30px;font-size:9px}
+#invoiceModal .invoice-payment.is-paid{background:#123d2a;color:#65e49b}
+#invoiceModal .invoice-payment.is-unpaid{background:#492319;color:#ffad82}
+#invoiceModal>.row.no-print{gap:8px}
+#invoiceModal>.row.no-print .btn{min-height:42px;border-radius:11px;font-size:11px}
+#invoiceModal>.row.no-print .btn.primary{background:linear-gradient(100deg,#ffdc42,#f2b900);border-color:#f2b900;color:#171717}
+@media(max-width:540px){#invoiceModal{padding:10px;width:calc(100% - 10px);max-height:94vh}#invoiceModal .invoice-paper{padding:13px}#invoiceModal .invoice-brand h2{font-size:15px}#invoiceModal .invoice-mark{width:42px;height:42px;flex-basis:42px;font-size:24px}#invoiceModal .invoice-info{gap:8px;padding:10px}#invoiceModal .invoice-info b{font-size:10px}#invoiceModal .invoice-items{font-size:9px}#invoiceModal .invoice-items th,#invoiceModal .invoice-items td{padding:7px 4px}#invoiceModal .invoice-totals .invoice-grand{font-size:11px}#invoiceModal .invoice-totals .invoice-grand b{font-size:12px}}
+@media(max-width:360px){#invoiceModal .invoice-brand{gap:8px}#invoiceModal .invoice-brand h2{font-size:13px}#invoiceModal .invoice-number b{font-size:14px}#invoiceModal .invoice-info{grid-template-columns:1fr 1fr}}
+
+
+/* Refined device and table management cards */
+#deviceGrid{display:block!important}
+.device-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0 16px}
+.device-stat{background:linear-gradient(145deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:13px;padding:11px 13px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.device-stat small{font-size:10px;color:var(--muted)}.device-stat b{font-size:17px;color:var(--text)}.device-stat.free b{color:#39c77b}.device-stat.busy b{color:#ff766d}
+.device-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.device-card{min-width:0;border:1px solid var(--line);border-radius:16px;padding:14px;background:linear-gradient(145deg,var(--panel2),var(--panel));box-shadow:0 7px 18px #0002;position:relative;overflow:hidden}
+.device-card:before{content:"";position:absolute;inset:0 0 auto;height:3px;background:#32bd78}.device-card.is-busy:before{background:#ed5555}
+.device-card-head{display:flex;align-items:center;justify-content:space-between;gap:8px}.device-icon{width:34px;height:34px;border-radius:10px;background:#ffcf3218;color:var(--yellow);display:grid;place-items:center;font-size:19px;font-weight:900}
+.device-state{display:inline-flex;align-items:center;gap:6px;border-radius:30px;padding:5px 9px;font-size:10px;font-weight:900}.device-state i,.ready-dot{width:7px;height:7px;border-radius:50%;background:currentColor;display:inline-block}.device-state.free{color:#39c77b;background:#39c77b18}.device-state.busy{color:#ff7770;background:#ff777018}
+.device-card h3{font-size:15px;margin:12px 0 0;overflow-wrap:anywhere}.device-kind{color:var(--muted);font-size:10px}.device-clock{font-size:25px;font-weight:900;letter-spacing:1px;color:var(--yellow);margin:10px 0 5px;direction:ltr;text-align:right}.device-session{display:flex;justify-content:space-between;gap:8px;padding:5px 0;border-bottom:1px solid var(--line);font-size:10px}.device-session span{color:var(--muted)}.device-session b{max-width:65%;overflow-wrap:anywhere;text-align:left}.device-ready{display:flex;align-items:center;gap:7px;color:#39c77b;font-size:11px;margin:17px 0 12px}.device-ready .ready-dot{background:#39c77b}.device-start{border-color:#d9ad24;background:#ffcf3218;color:var(--yellow);font-size:10px}
+@media(max-width:850px){.device-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:540px){.device-summary{gap:7px}.device-stat{padding:9px 8px;display:block;text-align:center}.device-stat small{display:block;font-size:9px}.device-stat b{font-size:16px}.device-cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.device-card{padding:11px;border-radius:13px}.device-card h3{font-size:13px}.device-icon{width:30px;height:30px}.device-state{font-size:9px;padding:4px 7px}.device-clock{font-size:21px}.device-session{font-size:9px;flex-direction:column;gap:1px}.device-session b{max-width:100%;text-align:right}.device-ready{font-size:9px;min-height:31px}.device-start{white-space:normal;line-height:1.5;padding:7px 5px}}
+@media(max-width:350px){.device-cards{grid-template-columns:1fr}}
+
+/* Expense entry and list: compact mobile layout */
+.expense-list{display:grid;gap:9px}.expense-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:12px;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--panel2);min-width:0}.expense-main{min-width:0}.expense-main strong{display:block;overflow-wrap:anywhere;font-size:12px}.expense-main small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.expense-amount{font-size:12px;white-space:nowrap;color:var(--yellow)}.expense-row .btn{white-space:nowrap}
+@media(max-width:540px){#view-expenses .grid{grid-template-columns:minmax(0,1fr)}#view-expenses .fields{grid-template-columns:minmax(0,1fr)}#view-expenses .card{min-width:0}#expenseTable{min-width:0;overflow:visible}.expense-row{grid-template-columns:minmax(0,1fr) auto;gap:8px}.expense-row .btn{grid-column:1/-1;width:100%}.expense-amount{font-size:11px}.row .field{min-width:0;width:100%}#view-reports .row{display:grid;grid-template-columns:1fr 1fr}#view-reports .row .btn{width:100%}}
+
+/* Inventory section: polished responsive stock cards and aligned product rows */
+#view-inventory{display:none}#view-inventory.active{display:block}
+#view-inventory .inventory-top{grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);align-items:stretch}
+#view-inventory .inventory-form,#view-inventory .inventory-summary,#view-inventory .inventory-products{border-radius:18px;border-color:#3a3a40;background:linear-gradient(145deg,var(--panel),color-mix(in srgb,var(--panel2) 45%,var(--panel)));}
+#view-inventory .inventory-summary{display:flex;flex-direction:column;justify-content:flex-start}
+#view-inventory .stock-stat-grid{display:grid;grid-template-columns:1fr;gap:9px}
+#view-inventory .stock-stat{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 13px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
+#view-inventory .stock-stat span{font-size:11px;color:var(--muted)}#view-inventory .stock-stat b{font-size:14px;font-weight:900;font-variant-numeric:tabular-nums}
+#view-inventory .stock-stat b.gold{color:var(--yellow)}#view-inventory .goodstock{color:var(--green)}
+#view-inventory .stock-alert{margin-top:12px;padding:10px 12px;border-radius:11px;background:#ef494018;color:#ff7770;font-size:11px;font-weight:800}
+#view-inventory .stock-alert.ok{background:#4ade8018;color:var(--green)}
+#view-inventory .inventory-products{margin-top:14px;padding:18px}
+#view-inventory .inventory-heading{display:flex;align-items:center;justify-content:space-between;gap:10px}
+#view-inventory .inventory-heading h2{margin-bottom:8px}
+#view-inventory .inventory-tools{display:grid;grid-template-columns:minmax(0,1fr) 190px;gap:9px;margin:10px 0 13px}
+#view-inventory .tablewrap{overflow:visible;border:1px solid var(--line);border-radius:13px;margin-top:0}
+#view-inventory .stock-table{width:100%;min-width:0;table-layout:auto;font-size:12px}
+#view-inventory .stock-table th{background:var(--panel2);font-size:11px;white-space:nowrap}
+#view-inventory .stock-table td,#view-inventory .stock-table th{padding:12px 10px;vertical-align:middle}
+#view-inventory .stock-table tbody tr:last-child td{border-bottom:0}
+#view-inventory .stock-product-name{font-size:12px;color:var(--text)}
+#view-inventory .stock-category{display:inline-block;padding:4px 9px;border-radius:20px;background:var(--panel2);color:var(--muted);font-size:10px}
+#view-inventory .stock-qty{display:inline-flex;min-width:38px;justify-content:center;padding:4px 9px;border-radius:8px;background:#4ade801b;color:var(--green);font-weight:900}
+#view-inventory .stock-qty.is-low{background:#ef49401b;color:#ff7770}
+#view-inventory .stock-actions{display:flex;gap:5px;align-items:center}
+#view-inventory .stock-actions .btn{white-space:nowrap;padding:6px 9px;min-height:31px}
+@media(max-width:760px){#view-inventory .inventory-top{grid-template-columns:1fr}#view-inventory .stock-stat-grid{grid-template-columns:1fr}#view-inventory .inventory-tools{grid-template-columns:1fr 125px}}
+@media(max-width:560px){#view-inventory .inventory-products{padding:13px}#view-inventory .inventory-tools{grid-template-columns:1fr 112px}#view-inventory .stock-table,#view-inventory .stock-table tbody,#view-inventory .stock-table tr,#view-inventory .stock-table td{display:block;width:100%}#view-inventory .stock-table thead{display:none}#view-inventory .stock-table tbody{display:grid;gap:9px;padding:9px}#view-inventory .stock-table tr{border:1px solid var(--line);border-radius:12px;background:var(--panel2);padding:8px 11px;display:grid;grid-template-columns:1fr 1fr;gap:0 12px}#view-inventory .stock-table td{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 0;border-bottom:1px solid color-mix(in srgb,var(--line) 75%,transparent);white-space:normal;text-align:left;font-size:11px;min-width:0}#view-inventory .stock-table td:before{content:attr(data-label);color:var(--muted);font-size:10px;font-weight:700;flex:0 0 auto}#view-inventory .stock-table td:first-child{grid-column:1/-1}#view-inventory .stock-table td:last-child{grid-column:1/-1;border-bottom:0;padding-bottom:2px}#view-inventory .stock-actions{justify-content:flex-end}#view-inventory .stock-actions .btn{font-size:10px}#view-inventory .stock-stat{padding:10px 11px}}
+
+
+/* Report invoice details: clear responsive rows instead of a cramped wide table */
+#view-reports #reportResult{min-width:0}
+#view-reports .report-metrics{gap:10px;margin:14px 0}
+#view-reports .report-metrics .metric{min-width:0;border:1px solid var(--line);border-top:2px solid #c99c24;border-radius:13px;background:linear-gradient(145deg,var(--panel2),var(--panel));padding:13px 14px}
+#view-reports .report-metrics .metric small{display:block;line-height:1.8}
+#view-reports .report-metrics .metric strong{font-size:clamp(13px,2vw,19px);overflow-wrap:anywhere;line-height:1.8}
+#view-reports .report-meta-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:12px 0 16px}
+#view-reports .report-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;background:var(--panel2);border:1px solid var(--line);border-radius:11px;min-width:0}
+#view-reports .report-meta span{color:var(--muted);font-size:11px}
+#view-reports .report-meta b{font-size:12px;overflow-wrap:anywhere;text-align:left}
+#view-reports .report-invoice-panel{margin-top:14px;padding:15px;border:1px solid var(--line);border-radius:15px;background:linear-gradient(150deg,var(--panel2),var(--panel) 58%)}
+#view-reports .report-invoice-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:12px;margin-bottom:10px;border-bottom:1px solid var(--line)}
+#view-reports .report-invoice-heading h3{margin:0;font-size:14px;color:var(--text)}
+#view-reports .report-invoice-heading small{display:block;margin-top:3px;color:var(--muted);font-size:10px}
+#view-reports .report-count{flex:0 0 auto;padding:5px 10px;border-radius:20px;background:#ffcb351a;color:var(--yellow);font-size:10px;font-weight:800}
+#view-reports .report-invoice-list{display:grid;gap:8px}
+#view-reports .report-invoice-row{display:grid;grid-template-columns:.65fr 1.3fr 1fr .9fr .8fr;align-items:center;gap:10px;min-width:0;padding:12px;background:var(--bg);border:1px solid var(--line);border-radius:11px}
+#view-reports .report-invoice-row>div{display:flex;flex-direction:column;gap:3px;min-width:0}
+#view-reports .report-invoice-row small{font-size:9px;color:var(--muted)}
+#view-reports .report-invoice-row b{font-size:11px;overflow-wrap:anywhere;line-height:1.7}
+#view-reports .report-invoice-customer span{font-size:9px;color:var(--muted);overflow-wrap:anywhere}
+#view-reports .report-invoice-number b{color:var(--yellow);font-size:13px}
+#view-reports .report-invoice-amount b{font-variant-numeric:tabular-nums;direction:rtl}
+#view-reports .report-state{display:inline-flex;align-self:flex-start;align-items:center;padding:4px 8px;border-radius:20px;font-size:9px;font-weight:800;white-space:nowrap}
+#view-reports .report-state.paid{background:#4ade801a;color:var(--green)}
+#view-reports .report-state.unpaid{background:#ef49401a;color:#ff827b}
+#view-reports .report-empty{margin-top:10px}
+@media(max-width:760px){#view-reports .report-invoice-row{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 12px;padding:11px}#view-reports .report-invoice-customer{grid-column:span 1}#view-reports .report-invoice-amount{align-items:flex-start}#view-reports .report-invoice-date{grid-column:1/-1;padding-top:7px;border-top:1px dashed var(--line)}}
+@media(max-width:420px){#view-reports .report-invoice-panel{padding:10px}#view-reports .report-invoice-row{gap:8px;padding:10px}#view-reports .report-invoice-row b{font-size:10px}#view-reports .report-metrics .metric{padding:10px}#view-reports .report-metrics .metric strong{font-size:12px}}
+@media print{#view-reports .report-invoice-row{break-inside:avoid;background:#fff;color:#111;border-color:#ccc}#view-reports .report-invoice-row b,#view-reports .report-invoice-heading h3{color:#111}#view-reports .report-invoice-panel,#view-reports .report-meta{break-inside:avoid}}
+
+
+/* Persian Jalali date picker */
+.date-input-wrap{display:flex;gap:7px;align-items:stretch;width:100%;min-width:0}
+.date-input-wrap .control{flex:1;min-width:0}
+.date-open-btn{flex:0 0 auto;min-width:88px;padding:8px 10px;border:1px solid #d6aa19;border-radius:10px;background:linear-gradient(135deg,#ffdc45,#f4b900);color:#171717;font:800 11px inherit;cursor:pointer;white-space:nowrap}
+#jalaliPicker{position:fixed;inset:0;z-index:99999;background:#000b;display:none;align-items:center;justify-content:center;padding:14px;direction:rtl}
+#jalaliPicker.open{display:flex}
+.jalali-picker-panel{width:min(360px,100%);background:#17181d;border:1px solid #42434a;border-radius:19px;padding:15px;box-shadow:0 22px 70px #000b;color:#f6f6f7}
+.jalali-picker-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:14px}
+.jalali-picker-head strong{font-size:14px;color:#ffcf32}
+.jalali-picker-nav{display:flex;gap:6px}
+.jalali-picker-nav button,.jalali-picker-actions button{border:1px solid #41424a;background:#24252b;color:#fff;border-radius:9px;padding:7px 10px;cursor:pointer}
+.jalali-picker-nav button{font-size:17px;min-width:34px}
+.jalali-picker-week,.jalali-picker-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;text-align:center}
+.jalali-picker-week{margin-bottom:7px;color:#aaa;font-size:10px}
+.jalali-picker-days button{aspect-ratio:1;border:1px solid transparent;border-radius:9px;background:#222329;color:#eee;font:600 12px inherit;cursor:pointer}
+.jalali-picker-days button:disabled{opacity:.23;cursor:default}
+.jalali-picker-days button.today{border-color:#d6aa19;color:#ffcf32}
+.jalali-picker-days button.selected{background:#ffcf32;color:#171717;font-weight:900}
+.jalali-picker-days button:not(:disabled):active{transform:scale(.94)}
+.jalali-picker-actions{display:flex;gap:7px;margin-top:13px}
+.jalali-picker-actions button{flex:1;font-size:11px;font-weight:800}
+.jalali-picker-actions .confirm{background:#ffcf32;color:#171717;border-color:#ffcf32}
+@media(max-width:380px){.date-open-btn{min-width:76px;padding:7px;font-size:10px}.jalali-picker-panel{padding:12px}}
+
+
+/* Device management controls */
+.device-manage-actions{display:flex;gap:7px;margin:10px 0 2px;flex-wrap:wrap}
+.device-manage-actions .btn{flex:1;min-width:0;padding:7px 8px;font-size:11px}
+.device-manage-actions .device-edit{border-color:#d6ad32;color:var(--yellow);background:#ffcf3210}
+.device-manage-actions button:disabled{opacity:.38;cursor:not-allowed}
+.admin-device-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 12px;margin:8px 0;border:1px solid var(--line);border-radius:12px;background:var(--panel2)}
+.admin-device-row>div{display:flex;gap:7px}.admin-device-row .btn{padding:7px 10px;font-size:11px}
+@media(max-width:540px){.device-manage-actions{gap:5px}.device-manage-actions .btn{font-size:10px;padding:7px 4px}.admin-device-row{align-items:flex-start}.admin-device-row>div{flex-shrink:0}}
+</style></head>
 <body>
-<header class="topbar"><div class="brand"><span class="brand-mark">7</span><span>COFFEE SEVEN<small>GAME • CAFE • EXPERIENCE</small></span></div><button class="btn btn-yellow" id="adminOpen">⚙ پنل مدیریت</button></header>
+<header class="top"><div class="brand"><span class="logo">7</span><span>COFFEE SEVEN<small>GAME • CAFE • EXPERIENCE</small></span></div><div class="actions"><button class="btn" id="themeBtn">☼ تغییر تم</button><button class="btn" id="backupBtn">پشتیبان‌گیری</button><button class="btn primary" id="adminBtn">⚙ تنظیمات</button></div></header>
 <main class="shell">
-<section class="intro"><div><div class="eyebrow">صندوق و مدیریت سانس</div><h1>ثبت سانس و سفارش</h1><p>اطلاعات بازی را وارد کن، محصولات بوفه را اضافه کن و مبلغ نهایی را ببین.</p></div><div class="live">● آماده ثبت فاکتور</div></section>
-<section class="metrics"><div class="metric"><div class="label">فاکتورهای این نشست</div><div class="value red" id="metricOrders">۰</div></div><div class="metric"><div class="label">مجموع فروش ثبت‌شده</div><div class="value yellow" id="metricSales">۰ تومان</div></div><div class="metric"><div class="label">وضعیت</div><div class="value" style="font-size:16px">نسخه مستقل</div></div></section>
-<div class="layout"><section class="card">
-<div class="card-head"><h2>اطلاعات سانس</h2><span class="step">۰۱</span></div>
-<div class="fields"><div class="field full"><label for="game">نوع بازی</label><select class="control" id="game"><option value="">انتخاب بازی...</option></select></div>
-<div class="field"><label for="tableNo">شماره میز / دستگاه</label><input class="control" id="tableNo" placeholder="مثلاً ۰۳"></div><div class="field"><label for="guests" id="guestLabel">تعداد نفرات</label><input class="control" id="guests" type="number" min="1" value="2"></div>
-<div class="field"><label for="start">ساعت شروع (۲۴ ساعته)</label><input class="control time-24" id="start" type="text" inputmode="numeric" maxlength="5" placeholder="18:00" value="18:00" autocomplete="off" dir="ltr" aria-label="ساعت شروع ۲۴ ساعته"></div><div class="field"><label for="end">ساعت پایان (۲۴ ساعته)</label><input class="control time-24" id="end" type="text" inputmode="numeric" maxlength="5" placeholder="20:30" value="" autocomplete="off" dir="ltr" aria-label="ساعت پایان ۲۴ ساعته"></div><div class="time-format-note">ساعت را مستقیم با فرمت ۲۴ ساعته وارد کن؛ مثلاً 18:00 تا 20:30. نمایش AM/PM وجود ندارد.</div>
-<div class="field full"><div class="hint">تعرفه بازی براساس ساعت محاسبه می‌شود. اگر ساعت پایان از شروع زودتر باشد، سانس عبوری از نیمه‌شب در نظر گرفته می‌شود.</div></div></div>
-<div class="section"><div class="section-title">سفارش بوفه</div><div class="fields"><div class="field"><label for="category">دسته‌بندی</label><select class="control" id="category"><option value="all">همه محصولات</option><option value="drink">نوشیدنی</option><option value="food">خوراکی</option></select></div><div class="field"><label for="product">محصول</label><select class="control" id="product"><option value="">انتخاب محصول...</option></select></div><div class="field"><label for="quantity">تعداد محصول</label><input class="control" id="quantity" type="number" min="1" value="1"></div><div class="field" style="justify-content:end"><button class="btn btn-red" id="addProduct" style="min-height:47px">＋ افزودن به فاکتور</button></div></div><div class="cart-list" id="cart"><div class="empty">هنوز محصولی به فاکتور اضافه نشده است.</div></div></div>
+<section class="hero"><div><div class="eyebrow">مدیریت هوشمند کافه‌گیم</div><h1>داشبورد Coffee Seven</h1><p>مدیریت سانس‌ها، فاکتورها، مشتریان، بوفه و امور مالی</p></div><div class="muted" id="todayText"></div></section>
+<section class="metrics" id="topMetrics"></section>
+<nav class="nav no-print">
+<button class="btn active" data-view="invoice">ثبت فاکتور</button><button class="btn" data-view="dashboard">داشبورد</button><button class="btn" data-view="devices">میزها و دستگاه‌ها</button><button class="btn" data-view="orders">فاکتورها</button><button class="btn" data-view="customers">مشتریان</button><button class="btn" data-view="inventory">انبار بوفه</button><button class="btn" data-view="expenses">هزینه‌ها</button><button class="btn" data-view="reports">گزارش‌ها</button>
+</nav>
+<section class="view active" id="view-invoice">
+<div class="grid"><div class="card"><h2>ثبت فاکتور جدید</h2><div class="fields">
+<div class="field"><label>نوع بازی / سرویس</label><select class="control" id="game"></select></div><div class="field"><label>میز یا دستگاه</label><input class="control" id="tableNo" type="number" min="1" step="1" inputmode="numeric" placeholder="شماره میز / دستگاه را وارد کن"></div>
+<div class="field"><label id="guestLabel">تعداد نفر / دسته</label><input class="control" id="guests" type="number" min="1" value="2"></div><div class="field"><label>نام مشتری</label><input class="control" id="customerName" placeholder="اختیاری"></div>
+<div class="field"><label>شماره تماس یا شناسه مشتری</label><input class="control" id="customerId" placeholder="برای تفکیک مشتریان"></div><div class="field"><label>درصد تخفیف (۱ تا ۱۰۰)</label><input class="control" id="discount" type="number" min="1" max="100" placeholder="بدون تخفیف خالی بماند"></div>
+<div class="field"><label>شروع سانس</label><input class="control" id="start" type="time" value="18:00"></div><div class="field"><label>پایان سانس</label><input class="control" id="end" type="time"></div>
+</div><div class="row" style="margin-top:12px"><button class="btn primary" id="startSession">▶ شروع سانس</button><button class="btn danger" id="finishSession">■ پایان سانس</button><button class="btn" id="newDraft">＋ فاکتور جدید</button></div>
+<div class="divider"></div><h2>افزودن محصولات بوفه</h2><div class="fields"><div class="field"><label>محصول</label><select class="control" id="product"></select></div><div class="field"><label>تعداد</label><input class="control" id="qty" type="number" min="1" value="1"></div></div><button class="btn" id="addProduct" style="margin-top:9px">افزودن به فاکتور</button><div id="cart" class="list" style="margin-top:12px"></div>
+<div class="divider"></div><h2>فاکتورهای باز</h2><div id="drafts" class="list"></div>
+</div><aside class="card summary"><h2>خلاصه فاکتور</h2><div class="totalbox"><small>مبلغ نهایی</small><strong id="grandTotal">۰ تومان</strong><small id="duration">مدت سانس: ۱ ساعت</small></div><div class="line"><span>هزینه بازی</span><b id="gameCost">۰</b></div><div class="line"><span>هزینه بوفه</span><b id="buffetCost">۰</b></div><div class="line"><span>مبلغ پایه</span><b id="subtotal">۰</b></div><div class="line"><span>تخفیف</span><b id="discountAmount">۰</b></div><div class="line"><span>مبلغ نهایی</span><b id="finalAmount">۰</b></div><div class="line"><span>وضعیت سانس</span><b id="sessionState">شروع نشده</b></div><button class="btn primary wide" id="saveInvoice">ثبت فاکتور نهایی</button><button class="btn wide" id="clearDraft">پاک‌کردن فاکتور فعلی</button><p class="muted" style="margin-top:12px">اطلاعات در همین مرورگر ذخیره می‌شود. برای نگهداری امن، مرتب پشتیبان بگیر.</p></aside></div>
 </section>
-<aside class="card summary"><div class="card-head"><h2>خلاصه فاکتور</h2><span class="step">۰۲</span></div><div class="total-panel"><div class="small">مبلغ نهایی قابل پرداخت</div><div class="total" id="total">۰ <small>تومان</small></div><p id="durationText">مدت سانس: ۱ ساعت</p></div>
-<div class="sumline"><span>هزینه بازی</span><strong id="gameCost">۰ تومان</strong></div><div class="sumline"><span>هزینه بوفه</span><strong id="buffetCost">۰ تومان</strong></div><div class="sumline"><span>تعداد محصولات</span><strong id="itemCount">۰ عدد</strong></div><div class="sumline"><span>شماره میز / دستگاه</span><strong id="tableSummary">—</strong></div><div class="sumline"><span>مدت سانس</span><strong id="durationSummary">۱ ساعت</strong></div>
-<button class="primary" id="startSession">▶ ثبت شروع سانس</button><button class="primary" id="finishSession" style="background:var(--red);color:white;margin-top:9px">■ ثبت پایان سانس و محاسبه</button><button class="secondary" id="saveOrder">ثبت فاکتور نهایی</button><button class="secondary" id="newInvoice">＋ افزودن فاکتور جدید</button><button class="secondary" id="clearForm">پاک کردن فاکتور فعلی</button><div class="hint" id="sessionStatus" style="margin-top:10px">سانس هنوز شروع نشده است.</div><div class="modal-section"><div class="section-title">فاکتورهای باز</div><div id="draftInvoices"></div></div><div class="hint" style="margin-top:13px">این نسخه مستقل است؛ ذخیره دائمی هنوز به بک‌اند متصل نشده است.</div>
-<div class="orders"><div class="orders-heading"><h3>فاکتورهای این نشست</h3><button class="btn btn-yellow" id="closeDay">بستن روز و تهیه گزارش</button></div><div id="orders"><div class="empty">هنوز فاکتوری ثبت نشده است.</div></div></div>
-<dialog id="dailyReportModal" class="modal"><div class="modal-head"><h2>گزارش پایان روز</h2><button class="close" id="closeReport">×</button></div><div id="dailyReportContent"></div><div class="modal-actions"><button class="btn btn-yellow" id="printReport">چاپ / ذخیره PDF</button><button class="btn btn-outline" id="doneReport">بستن گزارش</button></div></dialog></aside></div><div class="footer-note">COFFEE SEVEN · MANAGEMENT CONSOLE</div>
-</main>
-<dialog id="adminModal"><div class="modal-head"><h2>پنل مدیریت</h2><button class="close" id="closeAdmin">بستن ✕</button></div>
-<div class="manage-tabs"><button class="active" data-tab="prices">تعرفه بازی‌ها</button><button data-tab="drinks">مدیریت نوشیدنی‌ها</button><button data-tab="foods">مدیریت خوراکی‌ها</button></div>
-<section id="priceTab"><div class="hint">می‌توانی بازی جدید اضافه کنی، نام و تعرفه ساعتی را ویرایش کنی یا بازی را حذف کنی.</div>
-<div class="modal-section"><div class="section-title">افزودن بازی</div><div class="product-form"><div class="field"><label for="gameName">نام بازی</label><input class="control" id="gameName" placeholder="مثلاً فوتبال‌دستی"></div><div class="field"><label for="gamePrice">تعرفه ساعتی (تومان)</label><input class="control" id="gamePrice" type="number" min="0" placeholder="۱۲۰۰۰۰"></div><div></div><button class="btn btn-yellow" id="addGame">＋ افزودن بازی</button></div></div>
-<div class="modal-section"><div class="section-title">بازی‌ها و تعرفه (تومان / ساعت)</div><div id="gamePrices"></div></div><div class="modal-actions"><button class="btn" id="resetPrices">بازگردانی بازی‌ها و تعرفه نمونه</button></div></section>
-<section id="drinksTab" hidden><div class="hint">نوشیدنی جدید اضافه کن، نام و قیمت محصولات موجود را ویرایش کن یا محصول را حذف کن.</div><div class="modal-section"><div class="section-title">افزودن نوشیدنی</div><div class="product-form"><div class="field"><label for="drinkName">نام نوشیدنی</label><input class="control" id="drinkName" placeholder="مثلاً موهیتو"></div><div class="field"><label for="drinkPrice">قیمت (تومان)</label><input class="control" id="drinkPrice" type="number" min="0" placeholder="۶۵۰۰۰"></div><div class="field"><label for="drinkDummy">دسته‌بندی</label><input class="control" id="drinkDummy" value="نوشیدنی" disabled></div><button class="btn btn-yellow" id="addDrink">＋ افزودن</button></div></div><div class="modal-section"><div class="section-title">فهرست نوشیدنی‌ها</div><div id="drinkList"></div></div></section>
-<section id="foodsTab" hidden><div class="hint">خوراکی جدید اضافه کن و نام و قیمت محصولات موجود را هر زمان خواستی تغییر بده.</div><div class="modal-section"><div class="section-title">افزودن خوراکی</div><div class="product-form"><div class="field"><label for="foodName">نام خوراکی</label><input class="control" id="foodName" placeholder="مثلاً پاپ‌کورن"></div><div class="field"><label for="foodPrice">قیمت (تومان)</label><input class="control" id="foodPrice" type="number" min="0" placeholder="۵۰۰۰۰"></div><div class="field"><label for="foodDummy">دسته‌بندی</label><input class="control" id="foodDummy" value="خوراکی" disabled></div><button class="btn btn-yellow" id="addFood">＋ افزودن</button></div></div><div class="modal-section"><div class="section-title">فهرست خوراکی‌ها</div><div id="foodList"></div></div></section>
+<section class="view" id="view-dashboard"><div class="grid"><div class="card"><h2>روند فروش ۷ روز اخیر</h2><div class="chart" id="salesChart"></div></div><div class="card"><h2>خلاصه عملکرد</h2><div id="dashboardStats"></div></div></div><div class="card" style="margin-top:14px"><h2>آخرین فاکتورها</h2><div id="recentOrders"></div></div></section>
+<section class="view" id="view-devices"><div class="card"><div class="row"><h2 style="flex:2">وضعیت میزها و دستگاه‌ها</h2><button class="btn primary" id="addDevice">＋ افزودن میز / دستگاه</button></div><p class="muted">وضعیت هر دستگاه، تایمر سانس و هشدار پایان در این بخش نمایش داده می‌شود.</p><div class="device-grid" id="deviceGrid" style="margin-top:14px"></div></div></section>
+<section class="view" id="view-orders"><div class="card"><div class="orders-toolbar"><h2>فهرست فاکتورها</h2><input class="control" id="orderSearch" placeholder="جست‌وجوی شماره، مشتری، میز..."><select class="control" id="paymentFilter"><option value="all">همه وضعیت‌ها</option><option value="paid">تسویه‌شده</option><option value="unpaid">تسویه‌نشده</option></select></div><div id="ordersTable"></div></div></section>
+<section class="view" id="view-customers"><div class="grid"><div class="card"><h2>ثبت / ویرایش مشتری</h2><div class="fields"><div class="field"><label>نام مشتری</label><input class="control" id="custName"></div><div class="field"><label>شماره تماس یا شناسه یکتا</label><input class="control" id="custId"></div></div><div class="row" style="margin-top:10px;gap:8px"><button class="btn primary" id="saveCustomer">ذخیره مشتری</button><button class="btn" id="cancelCustomerEdit" type="button" hidden>لغو ویرایش</button></div><div class="customer-form-state" id="customerFormState"></div><div class="divider"></div><div class="row"><h2 style="flex:2">فهرست مشتریان</h2><input class="control" id="customerSearch" placeholder="جست‌وجوی نام یا شماره مشتری" style="max-width:260px"></div><div id="customerList" class="list"></div></div><div class="card"><h2>باشگاه مشتریان</h2><p class="muted">به ازای هر ۱۰۰ هزار تومان خرید، یک امتیاز وفاداری ثبت می‌شود. امتیازها با ثبت فاکتور به‌روز می‌شوند.</p><div id="loyaltySummary"></div></div></div></section>
+<section class="view" id="view-inventory"><div class="grid inventory-top"><div class="card inventory-form"><h2>افزودن محصول به انبار</h2><div class="fields"><div class="field"><label>نام محصول</label><input class="control" id="stockName" placeholder="مثلاً قهوه"></div><div class="field"><label>دسته‌بندی</label><select class="control" id="stockCategory"><option value="نوشیدنی">نوشیدنی</option><option value="خوراکی">خوراکی</option></select></div><div class="field"><label>قیمت خرید</label><input class="control" id="stockCost" type="number" min="0"></div><div class="field"><label>قیمت فروش</label><input class="control" id="stockPrice" type="number" min="0"></div><div class="field"><label>موجودی اولیه</label><input class="control" id="stockQty" type="number" min="0" value="0"></div><div class="field"><label>حد هشدار موجودی</label><input class="control" id="stockMin" type="number" min="0" value="5"></div></div><button class="btn primary" id="saveStock" style="margin-top:12px">＋ افزودن محصول</button></div><div class="card inventory-summary"><h2>ارزش و هشدار انبار</h2><div id="stockStats"></div></div></div><div class="card inventory-products"><div class="inventory-heading"><h2>موجودی محصولات</h2><span class="muted" id="stockCount"></span></div><div class="inventory-tools"><input class="control" id="stockSearch" placeholder="جست‌وجوی نام محصول..."><select class="control" id="stockFilter"><option value="all">همه دسته‌ها</option><option value="نوشیدنی">نوشیدنی</option><option value="خوراکی">خوراکی</option><option value="low">کم‌موجود</option></select></div><div class="tablewrap" id="stockTable"></div></div></section>
+<section class="view" id="view-expenses"><div class="grid"><div class="card"><h2>ثبت هزینه</h2><div class="fields"><div class="field"><label>عنوان هزینه</label><input class="control" id="expenseTitle" placeholder="مثلاً برق، اجاره، خرید مواد"></div><div class="field"><label>دسته‌بندی</label><select class="control" id="expenseCategory"><option>قبوض</option><option>اجاره</option><option>خرید کالا</option><option>حقوق</option><option>تعمیرات</option><option>سایر</option></select></div><div class="field"><label>مبلغ (تومان)</label><input class="control" id="expenseAmount" type="number" min="1"></div><div class="field"><label>تاریخ</label><input class="control" id="expenseDate" type="text" inputmode="numeric" placeholder="۱۴۰۵/۰۸/۱۳" autocomplete="off"></div></div><button class="btn primary" id="addExpense" style="margin-top:10px">ثبت هزینه</button></div><div class="card"><h2>خلاصه مالی</h2><div id="profitStats"></div></div></div><div class="card" style="margin-top:14px"><h2>هزینه‌های ثبت‌شده</h2><div id="expenseTable"></div></div></section>
+<section class="view" id="view-reports"><div class="card"><h2>گزارش مالی و روزانه</h2><div class="row"><div class="field"><label>از تاریخ</label><input class="control" id="reportFrom" type="text" inputmode="numeric" placeholder="۱۴۰۵/۰۸/۰۱" autocomplete="off"></div><div class="field"><label>تا تاریخ</label><input class="control" id="reportTo" type="text" inputmode="numeric" placeholder="۱۴۰۵/۰۸/۱۳" autocomplete="off"></div><button class="btn primary" id="makeReport">تهیه گزارش</button><button class="btn" id="printReport">چاپ / PDF</button></div><div id="reportResult" style="margin-top:15px"></div></div></section>
+<div id="printArea" class="hidden"></div>
+</main><div class="foot">COFFEE SEVEN · LOCAL MANAGEMENT CONSOLE · نسخه مستقل</div><div class="toast" id="toast"></div>
+
+
+<dialog class="modal" id="confirmInvoiceModal">
+ <div class="modalhead"><h2>تأیید نهایی فاکتور</h2><button class="close" data-close="confirmInvoiceModal">بستن ✕</button></div>
+ <p class="muted">لطفاً اطلاعات سانس و مبلغ را بررسی کن. فقط پس از تأیید، فاکتور در فهرست فاکتورها ثبت می‌شود.</p>
+ <div id="confirmInvoiceSummary" class="card" style="margin-top:12px"></div>
+ <div class="row" style="margin-top:14px">
+  <button class="btn primary" id="approveInvoice">✓ تأیید و ثبت فاکتور</button>
+  <button class="btn" id="rejectInvoice">✎ رد و بازگشت به ویرایش</button>
+ </div>
 </dialog>
-<div class="toast" id="toast" role="status"></div>
+
+<dialog class="modal" id="backupChoiceModal">
+ <div class="modalhead"><h2>انتخاب نوع پشتیبان‌گیری</h2><button class="close" data-close="backupChoiceModal">بستن ✕</button></div>
+ <p class="muted">فرمت موردنظر را انتخاب کن. فایل JSON برای بازیابی اطلاعات مناسب است؛ PDF برای مشاهده و چاپ گزارش اطلاعات.</p>
+ <div class="row" style="margin-top:16px">
+  <button class="btn primary" id="backupAsJson">دریافت پشتیبان JSON</button>
+  <button class="btn" id="backupAsPdf">دریافت پشتیبان PDF</button>
+ </div>
+ <p class="muted" style="margin-top:12px">توجه: فایل PDF فقط گزارش قابل‌خواندن است و برای بازیابی اطلاعات باید از JSON استفاده کنی.</p>
+</dialog>
+
+<dialog class="modal" id="settingsModal"><div class="modalhead"><h2>تنظیمات و تعرفه‌ها</h2><button class="close" data-close="settingsModal">بستن ✕</button></div><div class="subtabs"><button class="btn active" data-admin="rates">تعرفه‌ها</button><button class="btn" data-admin="devices">میزها و دستگاه‌ها</button><button class="btn" data-admin="backup">پشتیبان‌گیری</button></div><section id="admin-rates"><div id="rateEditor"></div><div class="divider"></div><h3>تعرفه مجزا برای ۲ و ۴ دسته / نفر</h3><div id="tierEditor"></div><button class="btn primary" id="saveRates" style="margin-top:12px">ذخیره تعرفه‌ها</button></section><section id="admin-devices" class="hidden"><div id="adminDeviceList"></div></section><section id="admin-backup" class="hidden"><p class="muted">پشتیبان شامل تنظیمات، مشتریان، فاکتورها، موجودی، هزینه‌ها و سانس‌های باز است.</p><button class="btn primary" id="exportBackup">دریافت فایل پشتیبان JSON</button><label class="btn" style="display:inline-block">بازیابی پشتیبان<input type="file" id="importBackup" accept=".json,application/json" hidden></label></section></dialog>
+<dialog class="modal" id="invoiceModal"><div class="modalhead"><h2>فاکتور مشتری</h2><button class="close" data-close="invoiceModal">بستن ✕</button></div><div id="invoiceDetail"></div><div class="row no-print" style="margin-top:12px"><button class="btn primary" id="printInvoice">چاپ / ذخیره PDF</button><button class="btn" id="closeInvoice">بستن</button></div></dialog>
 <script>
-"use strict";
-const DEFAULT_GAMES={"VIP":350000,"بیلیارد":250000,"PS5":180000,"PS4":120000,"Xbox":150000,"برد گیم":80000};
-const DEFAULT_PRODUCTS=[{id:"water",name:"آب معدنی",category:"drink",price:15000},{id:"soda",name:"نوشابه",category:"drink",price:35000},{id:"coffee",name:"قهوه",category:"drink",price:65000},{id:"tea",name:"چای",category:"drink",price:30000},{id:"juice",name:"آبمیوه",category:"drink",price:45000},{id:"chips",name:"چیپس",category:"food",price:40000},{id:"fries",name:"سیب‌زمینی",category:"food",price:90000},{id:"snack",name:"اسنک",category:"food",price:110000},{id:"cake",name:"کیک",category:"food",price:55000}];
-const $=id=>document.getElementById(id),fmt=n=>Math.round(n).toLocaleString("fa-IR"),money=n=>fmt(n)+" تومان";
-let games={...DEFAULT_GAMES},products=DEFAULT_PRODUCTS.map(p=>({...p})),cart=[],orders=[],drafts=[],activeDraftId=null,nextProductId=1,nextGameId=1;
-function toast(m){$("toast").textContent=m;$("toast").classList.add("show");clearTimeout(toast.timer);toast.timer=setTimeout(()=>$("toast").classList.remove("show"),2500)}
-function normalizeTimeInput(el){let v=el.value.trim().replace(/[۰-۹]/g,d=>"۰۱۲۳۴۵۶۷۸۹".indexOf(d)).replace(/[٠-٩]/g,d=>"٠١٢٣٤٥٦٧٨٩".indexOf(d));v=v.replace(/[.٫]/g,":");if(/^\d{4}$/.test(v))v=v.slice(0,2)+":"+v.slice(2);el.value=v;}
-function validTime(v){return /^(?:[01]\d|2[0-3]):[0-5]\d$/.test(v);}
-function duration(){let s=$("start").value,e=$("end").value;if(!s||!e||!validTime(s)||!validTime(e))return 0;let [sh,sm]=s.split(":").map(Number),[eh,em]=e.split(":").map(Number),d=eh*60+em-(sh*60+sm);if(d<0)d+=1440;return d/60}
-function renderGames(){let sel=$("game"),old=sel.value;sel.innerHTML='<option value="">انتخاب بازی...</option>';Object.keys(games).forEach(name=>{let o=document.createElement("option");o.value=name;o.textContent=name;sel.append(o)});if(games[old]!==undefined)sel.value=old}
-function renderProducts(){let sel=$("product"),old=sel.value,cat=$("category").value;sel.innerHTML='<option value="">انتخاب محصول...</option>';products.filter(p=>cat==="all"||p.category===cat).forEach(p=>{let o=document.createElement("option");o.value=p.id;o.textContent=p.name+" — "+money(p.price);sel.append(o)});if([...sel.options].some(o=>o.value===old))sel.value=old}
-function renderCart(){let box=$("cart");box.replaceChildren();if(!cart.length){box.innerHTML='<div class="empty">هنوز محصولی به فاکتور اضافه نشده است.</div>';return}cart.forEach((p,i)=>{let row=document.createElement("div");row.className="cart-item";let info=document.createElement("div");info.innerHTML="<strong>"+p.name+" × "+fmt(p.qty)+"</strong><div class='muted'>"+money(p.price)+" برای هر عدد</div>";let right=document.createElement("div");right.style.textAlign="left";let total=document.createElement("strong");total.textContent=money(p.price*p.qty);let remove=document.createElement("button");remove.className="remove";remove.textContent="حذف";remove.onclick=()=>{cart.splice(i,1);syncActiveDraft();renderCart();calculate()};right.append(total,remove);row.append(info,right);box.append(row)})}
-function calculate(){let h=duration(),g=$("game").value,gc=g?(games[g]||0)*h:0,bc=cart.reduce((s,p)=>s+p.price*p.qty,0),count=cart.reduce((s,p)=>s+p.qty,0);$("total").innerHTML=fmt(gc+bc)+" <small>تومان</small>";$("gameCost").textContent=money(gc);$("buffetCost").textContent=money(bc);$("itemCount").textContent=fmt(count)+" عدد";$("durationText").textContent="مدت سانس: "+fmt(h)+" ساعت";$("durationSummary").textContent=fmt(h)+" ساعت";$("tableSummary").textContent=$("tableNo").value.trim()||"—";syncActiveDraft(false)}
-function renderPriceInputs(){let gp=$("gamePrices");gp.replaceChildren();Object.entries(games).forEach(([name,price])=>{let row=document.createElement("div");row.className="product-row";let label=document.createElement("div");label.className="name";label.textContent=name;let input=document.createElement("input");input.className="control";input.type="number";input.min="0";input.value=price;input.setAttribute("aria-label","تعرفه ساعتی "+name);let save=document.createElement("button");save.className="btn btn-yellow";save.textContent="ذخیره";save.onclick=()=>{let v=Number(input.value);if(input.value===""||!Number.isFinite(v)||v<0){toast("تعرفه معتبر وارد کن.");return}games[name]=v;renderGames();calculate();toast("تعرفه "+name+" ذخیره شد.")};let del=document.createElement("button");del.className="btn btn-outline";del.textContent="حذف";del.onclick=()=>{if(!confirm("بازی «"+name+"» حذف شود؟"))return;delete games[name];renderGames();renderPriceInputs();calculate();toast("بازی حذف شد.")};row.append(label,input,save,del);gp.append(row)})}
-function renderProductManager(cat){let box=$(cat==="drink"?"drinkList":"foodList");box.replaceChildren();let list=products.filter(p=>p.category===cat);if(!list.length){box.innerHTML='<div class="empty">هنوز محصولی در این دسته ثبت نشده است.</div>';return}list.forEach(p=>{let row=document.createElement("div");row.className="product-row";let info=document.createElement("div");let name=document.createElement("input");name.className="control";name.value=p.name;name.setAttribute("aria-label","نام "+p.name);let category=document.createElement("div");category.className="category";category.textContent=cat==="drink"?"نوشیدنی":"خوراکی";info.append(name,category);let price=document.createElement("input");price.className="control";price.type="number";price.min="0";price.value=p.price;price.setAttribute("aria-label","قیمت "+p.name);let edit=document.createElement("button");edit.className="btn btn-yellow";edit.textContent="ذخیره";edit.onclick=()=>{let v=Number(price.value),newName=name.value.trim();if(!newName){toast("نام محصول را وارد کن.");name.focus();return}if(price.value===""||!Number.isFinite(v)||v<0){toast("قیمت معتبر وارد کن.");return}p.name=newName;p.price=v;cart.forEach(x=>{if(x.id===p.id){x.name=newName;x.price=v}});renderProducts();renderCart();calculate();syncActiveDraft();renderProductManager(cat);toast("نام و قیمت محصول ذخیره شد.")};let del=document.createElement("button");del.className="btn btn-outline delete-product";del.textContent="حذف";del.onclick=()=>{if(!confirm("محصول «"+p.name+"» حذف شود؟"))return;products=products.filter(x=>x.id!==p.id);cart=cart.filter(x=>x.id!==p.id);renderProductManager(cat);renderProducts();renderCart();calculate();toast("محصول حذف شد.")};row.append(info,price,edit,del);box.append(row)})}
-function renderManagers(){renderPriceInputs();renderProductManager("drink");renderProductManager("food")}
-function addProduct(cat){let name=$(cat==="drink"?"drinkName":"foodName"),price=$(cat==="drink"?"drinkPrice":"foodPrice"),n=name.value.trim(),v=Number(price.value);if(!n){toast("نام محصول را وارد کن.");name.focus();return}if(price.value===""||!Number.isFinite(v)||v<0){toast("قیمت معتبر وارد کن.");price.focus();return}products.push({id:"custom-"+Date.now()+"-"+(nextProductId++),name:n,category:cat,price:v});name.value="";price.value="";renderProductManager(cat);renderProducts();toast(n+" به فهرست اضافه شد.")}
-function addGame(){let n=$("gameName").value.trim(),v=Number($("gamePrice").value);if(!n){toast("نام بازی را وارد کن.");$("gameName").focus();return}if(games[n]!==undefined){toast("این بازی از قبل وجود دارد.");return}if($("gamePrice").value===""||!Number.isFinite(v)||v<0){toast("تعرفه ساعتی معتبر وارد کن.");$("gamePrice").focus();return}games[n]=v;$("gameName").value="";$("gamePrice").value="";renderGames();renderPriceInputs();toast("بازی "+n+" اضافه شد.")}
-function currentData(){return {game:$("game").value,table:$("tableNo").value,start:$("start").value,end:$("end").value,guests:$("guests").value,cart:cart.map(p=>({...p})),started:$("sessionStatus").dataset.started==="1",startedAt:$("sessionStatus").dataset.startedAt||""}}
-function syncActiveDraft(render=true){if(!activeDraftId)return;let d=drafts.find(x=>x.id===activeDraftId);if(d){Object.assign(d,currentData());if(render)renderDrafts()}}
-function loadDraft(d){activeDraftId=d.id;$("game").value=d.game||"";$("tableNo").value=d.table||"";$("start").value=d.start||"18:00";$("end").value=d.end||"";$("guests").value=d.guests||2;cart=(d.cart||[]).map(p=>({...p}));$("sessionStatus").dataset.started=d.started?"1":"0";$("sessionStatus").dataset.startedAt=d.startedAt||"";$("sessionStatus").textContent=d.started?"سانس شروع شده؛ پس از پایان، دکمه «ثبت پایان سانس و محاسبه» را بزن.":"سانس هنوز شروع نشده است.";renderProducts();renderCart();calculate();renderDrafts()}
-function renderDrafts(){let box=$("draftInvoices");if(!box)return;box.replaceChildren();if(!drafts.length){box.innerHTML='<div class="empty">فاکتور بازیِ بازی وجود ندارد؛ «افزودن فاکتور جدید» را بزن.</div>';return}drafts.forEach((d,i)=>{let row=document.createElement("div");row.className="draft-row";let b=document.createElement("button");b.className="secondary draft-open";b.style.borderColor=d.id===activeDraftId?"var(--yellow)":"#45454b";b.textContent=(d.id===activeDraftId?"● ":"")+"فاکتور "+fmt(i+1)+(d.table?" · میز "+d.table:" · بدون میز")+(d.started?" · سانس فعال":"");b.onclick=()=>{syncActiveDraft(false);loadDraft(d)};let del=document.createElement("button");del.className="secondary draft-delete";del.textContent="حذف";del.title="حذف این فاکتور باز";del.onclick=()=>{if(!confirm("فاکتور "+fmt(i+1)+" حذف شود؟ این کار قابل بازگشت نیست."))return;let wasActive=d.id===activeDraftId;drafts=drafts.filter(x=>x.id!==d.id);if(wasActive){activeDraftId=null;if(drafts.length)loadDraft(drafts[0]);else newInvoice()}else renderDrafts();toast("فاکتور باز حذف شد.")};row.append(b,del);box.append(row)})}
-function newInvoice(){syncActiveDraft(false);let d={id:"inv-"+Date.now()+"-"+Math.random().toString(36).slice(2,7),game:"",table:"",start:"18:00",end:"",guests:2,cart:[],started:false,startedAt:""};drafts.push(d);loadDraft(d);toast("فاکتور جدید ساخته شد.")}
-function renderOrders(){let box=$("orders");$("metricOrders").textContent=fmt(orders.length);$("metricSales").textContent=money(orders.reduce((s,o)=>s+o.total,0));box.replaceChildren();if(!orders.length){box.innerHTML='<div class="empty">هنوز فاکتوری ثبت نشده است.</div>';return}orders.forEach(o=>{let c=document.createElement("div");c.className="order-card";let h=document.createElement("div");h.className="order-head";let title=document.createElement("span");title.textContent="میز "+o.table+" · "+o.game;let tag=document.createElement("span");tag.className="tag";tag.textContent="نهایی‌شده";h.append(title,tag);let info=document.createElement("div");info.className="order-info";info.textContent+=$("start")?"":"";info.textContent=o.start+" تا "+o.end+" · "+fmt(o.h)+" ساعت · "+fmt(o.guests)+" نفر";let items=document.createElement("div");items.className="order-info";items.textContent=o.items.length?o.items.map(p=>p.name+" × "+fmt(p.qty)).join("، "):"بدون سفارش بوفه";let total=document.createElement("div");total.className="order-info order-total";total.textContent=money(o.total);c.append(h,info,items,total);box.append(c)})}
-function finalizeInvoice(){let game=$("game").value,table=$("tableNo").value.trim(),h=duration();if(!game){toast("نوع بازی را انتخاب کن.");$("game").focus();return}if(!table){toast("شماره میز یا دستگاه را وارد کن.");$("tableNo").focus();return}if(!$("start").value||!$("end").value){toast("ساعت شروع و پایان را وارد کن.");return}if(!validTime($("start").value)||!validTime($("end").value)){toast("ساعت‌ها باید به شکل ۲۴ ساعته مثل 18:00 باشند.");return}if(h<=0){toast("ساعت شروع و پایان را بررسی کن.");return}let total=(games[game]||0)*h+cart.reduce((s,p)=>s+p.price*p.qty,0);orders.unshift({game,table,start:$("start").value,end:$("end").value,h,guests:Math.max(1,Number($("guests").value)||1),items:cart.map(p=>({...p})),total,closedAt:new Date().toISOString()});drafts=drafts.filter(d=>d.id!==activeDraftId);activeDraftId=null;renderOrders();renderDrafts();toast("فاکتور نهایی شد و در فهرست ثبت شد.");newInvoice()}
-$("adminOpen").onclick=()=>{renderManagers();$("adminModal").showModal()};$("closeAdmin").onclick=()=>$("adminModal").close();
-document.querySelectorAll("[data-tab]").forEach(btn=>btn.onclick=()=>{document.querySelectorAll("[data-tab]").forEach(b=>b.classList.toggle("active",b===btn));$("priceTab").hidden=btn.dataset.tab!=="prices";$("drinksTab").hidden=btn.dataset.tab!=="drinks";$("foodsTab").hidden=btn.dataset.tab!=="foods"});
-$("resetPrices").onclick=()=>{if(!confirm("بازی‌ها و تعرفه‌ها به نمونه اولیه برگردند؟"))return;games={...DEFAULT_GAMES};renderGames();renderPriceInputs();calculate();toast("بازی‌ها و تعرفه نمونه بازگردانی شدند.")};
-$("addGame").onclick=addGame;$("addDrink").onclick=()=>addProduct("drink");$("addFood").onclick=()=>addProduct("food");$("category").onchange=renderProducts;
-$("addProduct").onclick=()=>{let p=products.find(p=>p.id===$("product").value),qty=Math.max(1,parseInt($("quantity").value,10)||1);if(!p){toast("یک محصول از بوفه انتخاب کن.");return}let old=cart.find(x=>x.id===p.id);if(old)old.qty+=qty;else cart.push({...p,qty});renderCart();calculate();syncActiveDraft();$("product").value="";$("quantity").value=1;toast("محصول به فاکتور فعلی اضافه شد.")};
-["start","end"].forEach(id=>{$(id).addEventListener("blur",()=>{normalizeTimeInput($(id));if($(id).value&&!validTime($(id).value))toast("ساعت را به شکل ۲۴ ساعته مثل 18:30 وارد کن.");calculate();syncActiveDraft()});$(id).addEventListener("input",()=>{calculate();syncActiveDraft()})});
-["game","tableNo","guests"].forEach(id=>$(id).addEventListener("input",()=>{calculate();syncActiveDraft()}));
-$("startSession").onclick=()=>{if(!$("game").value){toast("اول نوع بازی را انتخاب کن.");return}if(!$("tableNo").value.trim()){toast("شماره میز یا دستگاه را وارد کن.");return}if(!$("start").value||!validTime($("start").value)){toast("ساعت شروع را به فرمت ۲۴ ساعته مثل 18:00 وارد کن.");$("start").focus();return}$("sessionStatus").dataset.started="1";$("sessionStatus").dataset.startedAt=$("start").value;$("sessionStatus").textContent="شروع سانس ثبت شد: "+$("start").value+"؛ پس از پایان ساعت پایان را وارد کن و دکمه پایان سانس را بزن.";syncActiveDraft();renderDrafts();toast("شروع سانس ثبت شد.")}
-$("finishSession").onclick=()=>{if($("sessionStatus").dataset.started!=="1"){toast("ابتدا دکمه «ثبت شروع سانس» را بزن.");return}if(!$("end").value){toast("ساعت پایان را وارد کن.");$("end").focus();return}calculate();syncActiveDraft();finalizeInvoice()};
-$("saveOrder").onclick=finalizeInvoice;
-$("newInvoice").onclick=newInvoice;
-$("clearForm").onclick=()=>{if(!confirm("فقط اطلاعات فاکتور فعلی پاک شود؟"))return;let d=drafts.find(x=>x.id===activeDraftId);if(d){d.game="";d.table="";d.start="18:00";d.end="";d.guests=2;d.cart=[];d.started=false;d.startedAt=""}loadDraft(d||{id:"temp",game:"",table:"",start:"18:00",end:"",guests:2,cart:[],started:false,startedAt:""})};
-renderGames();renderProducts();renderCart();calculate();renderOrders();newInvoice();
-
-// Dynamic count label: controller-based games use دسته; billiards/board games use نفرات.
-(function(){
-  const gameEl=document.getElementById("game");
-  const labelEl=document.getElementById("guestLabel");
-  const countEl=document.getElementById("guests");
-  if(!gameEl||!labelEl||!countEl)return;
-  function refreshCountLabel(){
-    const selected=(gameEl.value||"").trim().toUpperCase();
-    const controllerGames=["VIP","PS5","PS4","XBOX"];
-    const label=controllerGames.includes(selected)?"تعداد دسته":"تعداد نفرات";
-    labelEl.textContent=label;
-    countEl.setAttribute("aria-label",label);
+'use strict';
+const $=id=>document.getElementById(id), money=n=>(Number(n)||0).toLocaleString('fa-IR')+' تومان', fmt=n=>(Number(n)||0).toLocaleString('fa-IR'), today=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}, uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+const faDigits=s=>String(s??'').replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d));
+function jalaliParts(iso){if(!iso)return null;const [y,m,d]=iso.slice(0,10).split('-').map(Number);if(!y||!m||!d)return null;const parts=new Intl.DateTimeFormat('en-u-ca-persian-nu-latn',{year:'numeric',month:'numeric',day:'numeric'}).formatToParts(new Date(Date.UTC(y,m-1,d,12)));const o={};parts.forEach(p=>{if(p.type!=='literal')o[p.type]=Number(p.value)});return o}
+function toJalali(iso){const p=jalaliParts(iso);return p?`${p.year}/${String(p.month).padStart(2,'0')}/${String(p.day).padStart(2,'0')}`.replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]):'—'}
+function fromJalali(value){const v=faDigits(value).trim().replace(/[.\-]/g,'/'),m=v.match(/^(\d{4})\/(\d{1,2})\/(\d{1,2})$/);if(!m)return '';const jy=+m[1],jm=+m[2],jd=+m[3];if(jm<1||jm>12||jd<1||jd>(jm<=6?31:jm<=11?30:30))return '';const base=Date.UTC(jy+621,jm+1,1,12);for(let off=0;off<=40;off++){const dt=new Date(base+off*86400000),iso=`${dt.getUTCFullYear()}-${String(dt.getUTCMonth()+1).padStart(2,'0')}-${String(dt.getUTCDate()).padStart(2,'0')}`,p=jalaliParts(iso);if(p&&p.year===jy&&p.month===jm&&p.day===jd)return iso}return ''}
+function setJalaliInput(id,iso){const el=$(id);if(el)el.value=toJalali(iso)}
+const KEY='coffeeSevenComplete_v1';
+const defaults=()=>({games:{VIP:180000,PS5:150000,PS4:100000,XBOX:130000,بیلیارد:90000},tiers:{VIP:{2:180000,4:250000},PS5:{2:150000,4:220000},PS4:{2:100000,4:160000},XBOX:{2:130000,4:190000},بیلیارد:{2:90000,4:150000}},products:[{id:'p1',name:'آب معدنی',category:'نوشیدنی',cost:5000,price:12000,stock:50,min:8},{id:'p2',name:'نوشابه',category:'نوشیدنی',cost:18000,price:30000,stock:35,min:6},{id:'p3',name:'چیپس',category:'خوراکی',cost:25000,price:40000,stock:25,min:5},{id:'p4',name:'قهوه',category:'نوشیدنی',cost:35000,price:65000,stock:20,min:5}],devices:['میز ۱','میز ۲','میز ۳','PS4-1','PS4-2','PS5-1','VIP-1','بیلیارد'],orders:[],drafts:[],customers:[],expenses:[],sessions:[],seq:1,theme:'dark'});
+let state=load(),activeDraft=null,currentInvoice=null,editingCustomerId=null;
+function load(){
+ try{
+  let x=JSON.parse(localStorage.getItem(KEY));
+  if(!x)return defaults();
+  let data={...defaults(),...x};
+  // One-time migration from the old 1001-based invoice numbering to 1-based numbering.
+  if(!data.invoiceSequenceMigrated){
+   const ids=(data.orders||[]).map(o=>Number(o.id)).filter(Number.isFinite);
+   if(ids.length && Math.min(...ids)>=1000){
+    data.orders.sort((a,b)=>new Date(a.closedAt||0)-new Date(b.closedAt||0));
+    data.orders.forEach((o,i)=>{o.id=i+1});
+   }
+   data.seq=Math.max(1,(data.orders||[]).reduce((m,o)=>Math.max(m,Number(o.id)||0),0)+1);
+   data.invoiceSequenceMigrated=true;
   }
-  gameEl.addEventListener("change",refreshCountLabel);
-  refreshCountLabel();
+  return data;
+ }catch(e){return defaults()}
+}
+function save(){localStorage.setItem(KEY,JSON.stringify(state));}
+function toast(t){$('toast').textContent=t;$('toast').classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>$('toast').classList.remove('show'),2800)}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function switchView(v){document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id==='view-'+v));document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===v));if(v==='dashboard')renderDashboard();if(v==='devices')renderDevices();if(v==='orders')renderOrders();if(v==='customers')renderCustomers();if(v==='inventory')renderInventory();if(v==='expenses')renderExpenses();if(v==='reports')makeReport()}
+document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>switchView(b.dataset.view));
+function active(){return state.drafts.find(d=>d.id===activeDraft)}
+function blankDraft(){return{id:uid(),game:'',device:'',guests:2,customerName:'',customerId:'',discount:'',start:'18:00',end:'',cart:[],started:false,startedAt:null,createdAt:new Date().toISOString()}}
+function syncDraft(){let d=active();if(!d)return;Object.assign(d,{game:$('game').value,device:$('tableNo').value,guests:+$('guests').value||1,customerName:$('customerName').value.trim(),customerId:$('customerId').value.trim(),discount:$('discount').value,start:$('start').value,end:$('end').value});save()}
+function loadDraft(d){activeDraft=d.id;$('game').value=d.game||'';$('tableNo').value=d.device||'';$('guests').value=d.guests||2;$('customerName').value=d.customerName||'';$('customerId').value=d.customerId||'';$('discount').value=d.discount||'';$('start').value=d.start||'18:00';$('end').value=d.end||'';renderCart();renderDrafts();calc()}
+function createDraft(){syncDraft();let d=blankDraft();state.drafts.push(d);save();loadDraft(d);toast('فاکتور باز جدید ایجاد شد.')}
+function duration(){let [a,b]=[$('start').value,$('end').value];if(!a||!b)return 0;let [ah,am]=a.split(':').map(Number),[bh,bm]=b.split(':').map(Number);let x=bh*60+bm-ah*60-am;if(x<0)x+=1440;return x/60}
+function rate(){let g=$('game').value,n=+$('guests').value||1;return Number(state.tiers[g]?.[n]??state.games[g]??0)}
+function calc(){let d=duration(),gc=rate()*d,bc=(active()?.cart||[]).reduce((s,p)=>s+p.price*p.qty,0),sub=gc+bc,pct=Math.max(0,Math.min(100,Number($('discount').value)||0)),off=sub*pct/100,total=sub-off;$('gameCost').textContent=money(gc);$('buffetCost').textContent=money(bc);$('subtotal').textContent=money(sub);$('discountAmount').textContent=money(off);$('finalAmount').textContent=money(total);$('grandTotal').textContent=money(total);$('duration').textContent='مدت سانس: '+fmt(d)+' ساعت';$('sessionState').textContent=active()?.started?'در حال اجرا':'شروع نشده';return{d,gc,bc,sub,pct,off,total}}
+function renderGameSelect(){let old=$('game').value;$('game').innerHTML='<option value="">انتخاب بازی...</option>'+Object.keys(state.games).map(g=>`<option>${esc(g)}</option>`).join('');$('game').value=old}
+function renderDeviceSelect(){ $('tableNo').placeholder='شماره میز / دستگاه را دستی وارد کن'; }
+function renderProductSelect(){let old=$('product').value;$('product').innerHTML='<option value="">انتخاب محصول</option>'+state.products.filter(p=>p.stock>0).map(p=>`<option value="${p.id}">${esc(p.name)} · ${money(p.price)} · موجودی ${fmt(p.stock)}</option>`).join('');$('product').value=old}
+function renderCart(){let d=active(),box=$('cart');box.innerHTML='';if(!d||!d.cart.length){box.innerHTML='<div class="empty">محصولی به فاکتور اضافه نشده است.</div>';return}d.cart.forEach((p,i)=>{let x=document.createElement('div');x.className='item';x.innerHTML=`<div><strong>${esc(p.name)}</strong><small>${fmt(p.qty)} عدد × ${money(p.price)}</small></div><b>${money(p.qty*p.price)}</b><button class="btn danger" data-remove="${i}">حذف</button>`;box.append(x)});box.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{d.cart.splice(+b.dataset.remove,1);save();renderCart();calc()})}
+function renderDrafts(){let box=$('drafts');box.innerHTML='';if(!state.drafts.length){box.innerHTML='<div class="empty">فاکتور بازی وجود ندارد.</div>';return}state.drafts.forEach((d,i)=>{let x=document.createElement('div');x.className='item';x.innerHTML=`<div><strong>فاکتور باز ${fmt(i+1)} ${d.customerName?'· '+esc(d.customerName):''}</strong><small>${esc(d.device||'بدون میز')} · ${d.started?'سانس فعال':'پیش‌نویس'}</small></div><button class="btn" data-open="${d.id}">بازکردن</button><button class="btn danger" data-del="${d.id}">حذف</button>`;box.append(x)});box.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>loadDraft(state.drafts.find(d=>d.id===b.dataset.open)));box.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{if(confirm('این فاکتور باز حذف شود؟')){state.drafts=state.drafts.filter(d=>d.id!==b.dataset.del);if(activeDraft===b.dataset.del){activeDraft=null;if(state.drafts.length)loadDraft(state.drafts[0]);else createDraft()}save();renderDrafts()}})}
+function addCart(){let d=active(),p=state.products.find(x=>x.id===$('product').value),q=Math.max(1,+$('qty').value||1);if(!p)return toast('محصول را انتخاب کن.');if(p.stock<q)return toast('موجودی محصول کافی نیست.');let old=d.cart.find(x=>x.id===p.id);if(old)old.qty+=q;else d.cart.push({id:p.id,name:p.name,price:p.price,qty:q,cost:p.cost});save();renderCart();calc();$('product').value='';$('qty').value=1}
+function startSession(){let d=active();if(!d)return;if(!$('game').value||!$('tableNo').value)return toast('نوع بازی و میز/دستگاه را انتخاب کن.');let occupied=state.sessions.find(s=>String(s.device)===String($('tableNo').value)&&s.draftId!==d.id);if(occupied)return toast('این میز یا دستگاه هم‌اکنون مشغول است.');if(!state.devices.map(String).includes(String($('tableNo').value)))state.devices.push(String($('tableNo').value));d.started=true;d.startedAt=new Date().toISOString();d.start=new Date().toTimeString().slice(0,5);$('start').value=d.start;syncDraft();save();renderDevices();renderDrafts();calc();toast('سانس شروع شد.')}
+function finishSession(){
+ let d=active();
+ if(!d?.started)return toast('ابتدا سانس را شروع کن.');
+ if(!$('end').value)$('end').value=new Date().toTimeString().slice(0,5);
+ syncDraft();
+ prepareInvoiceConfirmation();
+}
+function prepareInvoiceConfirmation(){
+ let d=active(); if(!d)return;
+ syncDraft();
+ let v=calc();
+ if(!d.game||!d.device)return toast('بازی و میز/دستگاه را انتخاب کن.');
+ if(!d.end)return toast('ساعت پایان را وارد کن.');
+ if(v.d<=0)return toast('ساعت پایان باید بعد از ساعت شروع باشد.');
+ let customer=d.customerName||'مشتری بدون نام';
+ $('confirmInvoiceSummary').innerHTML=
+ `<div class="line"><span>مشتری</span><b>${esc(customer)}</b></div>
+ <div class="line"><span>بازی / دستگاه</span><b>${esc(d.game)} · ${esc(d.device)}</b></div>
+ <div class="line"><span>شروع سانس</span><b>${esc(d.start)}</b></div>
+ <div class="line"><span>پایان سانس</span><b>${esc(d.end)}</b></div>
+ <div class="line"><span>مدت سانس</span><b>${fmt(v.d)} ساعت</b></div>
+ <div class="line"><span>هزینه بازی</span><b>${money(v.gc)}</b></div>
+ <div class="line"><span>هزینه بوفه</span><b>${money(v.bc)}</b></div>
+ <div class="line"><span>مبلغ پایه</span><b>${money(v.sub)}</b></div>
+ <div class="line"><span>تخفیف</span><b>${fmt(v.pct)}٪ · ${money(v.off)}</b></div>
+ <div class="totalbox" style="margin:12px 0 0"><small>مبلغ نهایی قابل ثبت</small><strong>${money(v.total)}</strong></div>`;
+ $('confirmInvoiceModal').showModal();
+}
+function finalize(){let d=active();syncDraft();let v=calc();if(!d.game||!d.device)return toast('بازی و میز/دستگاه را انتخاب کن.');if(v.d<=0)return toast('ساعت پایان را وارد کن و زمان را بررسی کن.');for(let p of d.cart){let stock=state.products.find(x=>x.id===p.id);if(!stock||stock.stock<p.qty)return toast('موجودی '+p.name+' کافی نیست.')}d.cart.forEach(p=>{let stock=state.products.find(x=>x.id===p.id);stock.stock-=p.qty});let id=state.seq++;let customer=findOrCreateCustomer(d.customerName,d.customerId);let order={id,game:d.game,device:d.device,table:d.device,guests:d.guests,start:d.start,end:d.end,hours:v.d,customerName:d.customerName||'مشتری بدون نام',customerId:d.customerId||'',customerKey:customer?.id||'',items:d.cart.map(x=>({...x})),gameCost:v.gc,buffetCost:v.bc,subtotal:v.sub,discountPercent:v.pct,discountAmount:v.off,total:v.total,paid:false,closedAt:new Date().toISOString()};state.orders.unshift(order);if(customer){customer.totalSpent+=order.total;customer.points+=Math.floor(order.total/100000);customer.visits++;customer.lastVisit=order.closedAt}state.sessions=state.sessions.filter(s=>s.draftId!==d.id);state.drafts=state.drafts.filter(x=>x.id!==d.id);save();activeDraft=null;renderAll();createDraft();showInvoice(order);toast('فاکتور '+id+' ثبت شد.')}
+function findOrCreateCustomer(name,id){if(!name&&!id)return null;let c=state.customers.find(x=>(id&&x.key===id)||(!id&&name&&x.name===name));if(!c){c={id:uid(),name:name||'بدون نام',key:id||'',totalSpent:0,points:0,visits:0,createdAt:new Date().toISOString()};state.customers.push(c)}return c}
+function showInvoice(o){
+ currentInvoice=o;
+ let rows=o.items.map((p,i)=>`<tr><td>${fmt(i+1)}</td><td>${esc(p.name)}</td><td>${fmt(p.qty)}</td><td>${money(p.price)}</td><td>${money(p.price*p.qty)}</td></tr>`).join('');
+ $('invoiceDetail').innerHTML=`<div class="invoice-paper" id="invoicePaper">
+ <header class="invoice-brand"><div class="invoice-mark">7</div><div><h2>COFFEE SEVEN</h2><small>GAME • CAFE • EXPERIENCE</small></div><div class="invoice-number"><small>شماره فاکتور</small><b>${fmt(o.id)}</b></div></header>
+ <div class="invoice-title"><strong>فاکتور فروش</strong><span>${new Date(o.closedAt).toLocaleString('fa-IR')}</span></div>
+ <div class="invoice-info"><div><small>نام مشتری</small><b>${esc(o.customerName)}</b></div><div><small>شماره تماس / شناسه</small><b>${esc(o.customerId||'—')}</b></div><div><small>بازی و میز</small><b>${esc(o.game)} · ${esc(o.device)}</b></div><div><small>زمان سانس</small><b>${esc(o.start)} تا ${esc(o.end)} (${fmt(o.hours)} ساعت)</b></div></div>
+ <h3 class="invoice-section-title">جزئیات سفارش</h3><table class="invoice-items"><thead><tr><th>ردیف</th><th>شرح</th><th>تعداد</th><th>قیمت واحد</th><th>جمع</th></tr></thead><tbody>${rows||'<tr><td colspan="5">بدون محصول بوفه</td></tr>'}</tbody></table>
+ <div class="invoice-totals"><div><span>هزینه بازی</span><b>${money(o.gameCost)}</b></div><div><span>هزینه بوفه</span><b>${money(o.buffetCost)}</b></div><div><span>مبلغ پایه</span><b>${money(o.subtotal)}</b></div><div><span>تخفیف (${fmt(o.discountPercent)}٪)</span><b>${money(o.discountAmount)}</b></div><div class="invoice-grand"><span>مبلغ قابل پرداخت</span><b>${money(o.total)}</b></div></div>
+ <div class="invoice-footer"><span class="invoice-payment ${o.paid?'is-paid':'is-unpaid'}">${o.paid?'تسویه‌شده':'تسویه‌نشده'}</span><p>از انتخاب شما سپاسگزاریم ☕</p></div></div>`;
+ $('invoiceModal').showModal();
+}
+function renderOrders(){
+ let q=($('orderSearch').value||'').trim().toLowerCase(),f=$('paymentFilter').value;
+ let list=state.orders.filter(o=>(f==='all'||(f==='paid')===o.paid)&&[o.id,o.customerName,o.customerId,o.device,o.game].join(' ').toLowerCase().includes(q)).slice().sort((a,b)=>new Date(b.closedAt)-new Date(a.closedAt));
+ $('ordersTable').innerHTML=list.map(o=>{
+  let date=o.closedAt?new Date(o.closedAt).toLocaleDateString('fa-IR'):'—';
+  return `<article class="invoice-row">
+   <div class="invoice-main">
+    <div class="invoice-cell"><small>شماره فاکتور</small><b class="invoice-id">${fmt(o.id)}</b></div>
+    <div class="invoice-cell invoice-customer"><small>مشتری</small><b>${esc(o.customerName||'مشتری بدون نام')}</b>${o.customerId?`<small>${esc(o.customerId)}</small>`:''}</div>
+    <div class="invoice-cell"><small>میز / بازی</small><b>${esc(o.device||'—')} · ${esc(o.game||'—')}</b></div>
+    <div class="invoice-cell"><small>مبلغ نهایی</small><b class="invoice-amount">${money(o.total)}</b></div>
+    <div class="invoice-cell"><small>وضعیت پرداخت</small><span class="invoice-status ${o.paid?'paid':'unpaid'}">${o.paid?'تسویه‌شده':'تسویه‌نشده'}</span></div>
+    <div class="invoice-cell"><small>تاریخ ثبت</small><b class="invoice-date">${date}</b></div>
+   </div>
+   <div class="invoice-actions"><button class="btn ${o.paid?'':'danger'}" data-pay="${o.id}">${o.paid?'ثبت عدم تسویه':'تأیید پرداخت'}</button><button class="btn primary" data-view-invoice="${o.id}">مشاهده فاکتور</button></div>
+  </article>`;
+ }).join('');
+ if(!list.length)$('ordersTable').innerHTML='<div class="empty">فاکتوری با این مشخصات پیدا نشد.</div>';
+ document.querySelectorAll('[data-pay]').forEach(b=>b.onclick=()=>{let o=state.orders.find(x=>x.id==b.dataset.pay);if(!o)return;o.paid=!o.paid;save();renderOrders();renderTop();toast('وضعیت پرداخت تغییر کرد.')});
+ document.querySelectorAll('[data-view-invoice]').forEach(b=>b.onclick=()=>{let o=state.orders.find(x=>x.id==b.dataset.viewInvoice);if(o)showInvoice(o)});
+}
+function renderDevices(){
+ let box=$('deviceGrid'); if(!box)return; box.innerHTML='';
+ const activeCount=state.devices.filter(device=>state.sessions.some(x=>String(x.device)===String(device))).length;
+ const freeCount=Math.max(0,state.devices.length-activeCount);
+ const summary=document.createElement('div'); summary.className='device-summary';
+ summary.innerHTML=`<div class="device-stat"><small>کل میزها و دستگاه‌ها</small><b>${fmt(state.devices.length)}</b></div><div class="device-stat free"><small>آزاد</small><b>${fmt(freeCount)}</b></div><div class="device-stat busy"><small>مشغول</small><b>${fmt(activeCount)}</b></div>`;
+ box.append(summary);
+ const sorted=[...state.devices].sort((a,b)=>{
+  const sa=state.sessions.some(x=>String(x.device)===String(a))?1:0;
+  const sb=state.sessions.some(x=>String(x.device)===String(b))?1:0;
+  return sa-sb || String(a).localeCompare(String(b),'fa');
+ });
+ if(!sorted.length){box.insertAdjacentHTML('beforeend','<div class="empty">هنوز میز یا دستگاهی ثبت نشده است.</div>');return;}
+ const grid=document.createElement('div');grid.className='device-cards';box.append(grid);
+ sorted.forEach(device=>{
+  let s=state.sessions.find(x=>String(x.device)===String(device)),d=s&&state.drafts.find(x=>x.id===s.draftId);
+  let elapsed=s?Math.max(0,Math.floor((Date.now()-new Date(s.startedAt).getTime())/60000)):0;
+  let kind=/بیلیارد/i.test(device)?'بیلیارد':/^میز/.test(device)?'میز بازی':String(device).split(/[- ]/)[0];
+  let x=document.createElement('article');x.className='device-card '+(s?'is-busy':'is-free');
+  x.innerHTML=`<div class="device-card-head"><span class="device-icon">${kind==='بیلیارد'?'◎':kind==='میز بازی'?'▦':'🎮'}</span><span class="device-state ${s?'busy':'free'}"><i></i>${s?'مشغول':'آزاد'}</span></div>
+   <h3>${esc(device)}</h3><small class="device-kind">${esc(kind)}</small>
+   <div class="device-manage-actions"><button type="button" class="btn device-edit" data-edit-device="${esc(device)}" ${s?'disabled title="ابتدا سانس را پایان دهید"':''}>✎ ویرایش</button><button type="button" class="btn danger device-delete" data-delete-device="${esc(device)}" ${s?'disabled title="دستگاه مشغول است"':''}>حذف</button></div>
+   ${s?`<div class="device-clock">${fmt(Math.floor(elapsed/60))}:${String(elapsed%60).padStart(2,'0')}</div><div class="device-session"><span>مشتری</span><b>${esc(d?.customerName||'مشتری بدون نام')}</b></div><div class="device-session"><span>شروع سانس</span><b>${new Date(s.startedAt).toLocaleTimeString('fa-IR',{hour:'2-digit',minute:'2-digit'})}</b></div><button class="btn danger wide" data-stop="${s.draftId}">پایان سانس</button>`:
+   `<div class="device-ready"><span class="ready-dot"></span> آماده پذیرش مشتری</div><button class="btn device-start wide" data-use-device="${esc(device)}">ثبت سانس برای این دستگاه</button>`}`;
+  grid.append(x);
+ });
+ box.querySelectorAll('[data-stop]').forEach(b=>b.onclick=()=>{let d=state.drafts.find(x=>x.id===b.dataset.stop);if(d){loadDraft(d);$('end').value=new Date().toTimeString().slice(0,5);finishSession();}});
+ box.querySelectorAll('[data-use-device]').forEach(b=>b.onclick=()=>{let device=b.dataset.useDevice;let d=active();if(!d){createDraft();d=active()}switchView('invoice');$('tableNo').value=device;syncDraft();toast('دستگاه انتخاب شد؛ نوع بازی و اطلاعات مشتری را وارد کن.')});
+ box.querySelectorAll('[data-edit-device]').forEach(b=>b.onclick=()=>editDevice(b.dataset.editDevice));
+ box.querySelectorAll('[data-delete-device]').forEach(b=>b.onclick=()=>deleteDevice(b.dataset.deleteDevice));
+}
+function deviceIsBusy(name){return state.sessions.some(s=>String(s.device)===String(name));}
+function addDevice(){let raw=prompt('نام میز یا دستگاه جدید را وارد کن:');if(raw===null)return;let name=raw.trim();if(!name)return toast('نام میز یا دستگاه نمی‌تواند خالی باشد.');if(state.devices.some(x=>String(x).toLowerCase()===name.toLowerCase()))return toast('این نام قبلاً ثبت شده است.');state.devices.push(name);save();renderDevices();renderDeviceSelect();renderAdminDevices();toast('میز یا دستگاه اضافه شد.');}
+function editDevice(oldName){if(deviceIsBusy(oldName))return toast('برای ویرایش، ابتدا سانس فعال را پایان بده.');let raw=prompt('نام جدید میز یا دستگاه:',oldName);if(raw===null)return;let name=raw.trim();if(!name)return toast('نام نمی‌تواند خالی باشد.');if(name!==oldName&&state.devices.some(x=>String(x).toLowerCase()===name.toLowerCase()))return toast('این نام قبلاً وجود دارد.');let i=state.devices.findIndex(x=>String(x)===String(oldName));if(i<0)return;state.devices[i]=name;state.drafts.forEach(d=>{if(String(d.device)===String(oldName))d.device=name});save();renderDevices();renderDeviceSelect();renderAdminDevices();toast('مشخصات میز یا دستگاه ویرایش شد.');}
+function deleteDevice(name){if(deviceIsBusy(name))return toast('دستگاه مشغول است؛ ابتدا سانس را پایان بده.');if(!confirm('میز/دستگاه «'+name+'» حذف شود؟ این کار قابل بازگشت نیست.'))return;state.devices=state.devices.filter(x=>String(x)!==String(name));save();renderDevices();renderDeviceSelect();renderAdminDevices();toast('میز یا دستگاه حذف شد.');}
+function renderAdminDevices(){let box=$('adminDeviceList');if(!box)return;box.innerHTML=state.devices.length?state.devices.map(d=>`<div class="admin-device-row"><b>${esc(d)}</b><div><button class="btn" data-admin-edit-device="${esc(d)}">ویرایش</button><button class="btn danger" data-admin-delete-device="${esc(d)}">حذف</button></div></div>`).join(''):'<div class="empty">میزی یا دستگاهی ثبت نشده است.</div>';box.querySelectorAll('[data-admin-edit-device]').forEach(b=>b.onclick=()=>editDevice(b.dataset.adminEditDevice));box.querySelectorAll('[data-admin-delete-device]').forEach(b=>b.onclick=()=>deleteDevice(b.dataset.adminDeleteDevice));}
+function resetCustomerForm(){editingCustomerId=null;$('custName').value='';$('custId').value='';$('saveCustomer').textContent='ذخیره مشتری';$('cancelCustomerEdit').hidden=true;$('customerFormState').textContent=''}
+function startCustomerEdit(id){const c=state.customers.find(x=>x.id===id);if(!c)return;editingCustomerId=id;$('custName').value=c.name||'';$('custId').value=c.key||'';$('saveCustomer').textContent='ثبت تغییرات';$('cancelCustomerEdit').hidden=false;$('customerFormState').textContent='در حال ویرایش اطلاعات مشتری';$('custName').focus();window.scrollTo({top:$('view-customers').getBoundingClientRect().top+window.scrollY-12,behavior:'smooth'})}
+function deleteCustomer(id){const c=state.customers.find(x=>x.id===id);if(!c)return;const linked=state.orders.filter(o=>o.customerKey===id);const warning=linked.length?`\n\nاین مشتری ${linked.length} فاکتور دارد. فاکتورها، مبالغ و سوابق مالی حذف نمی‌شوند و فقط از پروفایل مشتری جدا خواهند شد.`:'';if(!confirm(`مشتری «${c.name}» حذف شود؟${warning}`))return;state.orders.forEach(o=>{if(o.customerKey===id)o.customerKey=''});state.customers=state.customers.filter(x=>x.id!==id);if(editingCustomerId===id)resetCustomerForm();save();renderCustomers();renderOrders();renderTop();toast('مشتری حذف شد؛ سوابق فاکتورها حفظ شدند.')}
+function renderCustomers(){
+ let list=$('customerList');list.innerHTML='';let q=($('customerSearch')?.value||'').trim().toLowerCase();
+ let customers=state.customers.filter(c=>(c.name+' '+c.key).toLowerCase().includes(q)).sort((a,b)=>b.totalSpent-a.totalSpent);
+ customers.forEach(c=>{let level=c.points>=50?'طلایی':c.points>=20?'نقره‌ای':'برنزی',orders=state.orders.filter(o=>o.customerKey===c.id);
+ let x=document.createElement('div');x.className='customer-card';
+ x.innerHTML=`<div class="customer-top"><div class="customer-avatar">${esc((c.name||'م')[0])}</div><div class="customer-id"><strong>${esc(c.name)}</strong><small>${esc(c.key||'بدون شناسه')}</small></div><span class="customer-level">${level}</span></div>
+ <div class="customer-stats"><div><small>تعداد مراجعات</small><b>${fmt(c.visits)}</b></div><div><small>مجموع خرید</small><b>${money(c.totalSpent)}</b></div><div><small>امتیاز وفاداری</small><b>${fmt(c.points)}</b></div></div>
+ <details class="customer-history"><summary>تاریخچه خرید (${fmt(orders.length)})</summary>${orders.length?orders.slice(0,10).map(o=>`<div class="line"><span>فاکتور ${fmt(o.id)} · ${new Date(o.closedAt).toLocaleDateString('fa-IR')}</span><b>${money(o.total)}</b></div>`).join(''):'<small class="muted">فاکتوری ثبت نشده است.</small>'}</details>
+ <div class="customer-actions"><button class="btn edit" data-edit-customer="${c.id}">✎ ویرایش مشتری</button><button class="btn danger" data-delete-customer="${c.id}">حذف مشتری</button></div>`;list.append(x)});
+ list.querySelectorAll('[data-edit-customer]').forEach(b=>b.onclick=()=>startCustomerEdit(b.dataset.editCustomer));
+ list.querySelectorAll('[data-delete-customer]').forEach(b=>b.onclick=()=>deleteCustomer(b.dataset.deleteCustomer));
+ if(!customers.length)list.innerHTML='<div class="empty">مشتری‌ای با این مشخصات پیدا نشد.</div>';
+ $('loyaltySummary').innerHTML=`<div class="metric"><small>تعداد مشتریان</small><strong>${fmt(state.customers.length)}</strong></div><div class="metric"><small>مجموع امتیازها</small><strong>${fmt(state.customers.reduce((a,c)=>a+c.points,0))}</strong></div><div class="metric"><small>مجموع خرید مشتریان</small><strong>${money(state.customers.reduce((a,c)=>a+c.totalSpent,0))}</strong></div>`;
+}
+function renderInventory(){renderProductSelect();let low=state.products.filter(p=>p.stock<=p.min),worth=state.products.reduce((s,p)=>s+p.cost*p.stock,0);$('stockStats').innerHTML=`<div class="stock-stat-grid"><div class="stock-stat"><span>ارزش خرید موجودی</span><b class="gold">${money(worth)}</b></div><div class="stock-stat"><span>اقلام موجود</span><b>${fmt(state.products.length)}</b></div><div class="stock-stat"><span>اقلام کم‌موجود</span><b class="${low.length?'lowstock':'goodstock'}">${fmt(low.length)}</b></div></div><div class="stock-alert ${low.length?'':'ok'}">${low.length?'⚠ '+fmt(low.length)+' محصول نیاز به بررسی موجودی دارد':'✓ موجودی همه محصولات در وضعیت مناسب است'}</div>`;let q=($('stockSearch')?.value||'').trim().toLowerCase(),filter=$('stockFilter')?.value||'all',items=state.products.filter(p=>(!q||p.name.toLowerCase().includes(q))&&(filter==='all'||(filter==='low'?p.stock<=p.min:p.category===filter)));$('stockCount').textContent=fmt(items.length)+' محصول';$('stockTable').innerHTML=items.length?`<table class="stock-table"><thead><tr><th>محصول</th><th>دسته‌بندی</th><th>قیمت خرید</th><th>قیمت فروش</th><th>موجودی</th><th>سود واحد</th><th>عملیات</th></tr></thead><tbody>${items.map(p=>`<tr><td data-label="محصول"><strong class="stock-product-name">${esc(p.name)}</strong></td><td data-label="دسته‌بندی"><span class="stock-category">${esc(p.category)}</span></td><td data-label="قیمت خرید">${money(p.cost)}</td><td data-label="قیمت فروش">${money(p.price)}</td><td data-label="موجودی"><span class="stock-qty ${p.stock<=p.min?'is-low':''}">${fmt(p.stock)} ${p.stock<=p.min?'⚠':''}</span></td><td data-label="سود واحد">${money(p.price-p.cost)}</td><td data-label="عملیات"><div class="stock-actions"><button class="btn" data-restock="${p.id}">＋ موجودی</button><button class="btn danger" data-delstock="${p.id}">حذف</button></div></td></tr>`).join('')}</tbody></table>`:'<div class="empty">محصولی با این مشخصات پیدا نشد.</div>';document.querySelectorAll('[data-restock]').forEach(b=>b.onclick=()=>{let n=prompt('چند عدد به موجودی اضافه شود؟','10');if(n!==null&&+n>0){state.products.find(p=>p.id===b.dataset.restock).stock+=+n;save();renderInventory()}});document.querySelectorAll('[data-delstock]').forEach(b=>b.onclick=()=>{if(confirm('محصول حذف شود؟')){state.products=state.products.filter(p=>p.id!==b.dataset.delstock);save();renderInventory()}})}
+function renderExpenses(){let total=state.expenses.reduce((s,e)=>s+e.amount,0),sales=state.orders.reduce((s,o)=>s+o.total,0);$('profitStats').innerHTML=`<div class="line"><span>فروش ثبت‌شده</span><b>${money(sales)}</b></div><div class="line"><span>هزینه‌های ثبت‌شده</span><b>${money(total)}</b></div><div class="line"><span>سود عملیاتی تقریبی</span><b>${money(sales-total)}</b></div>`;$('expenseTable').innerHTML=state.expenses.length?`<div class="expense-list">${state.expenses.slice().reverse().map(e=>`<article class="expense-row"><div class="expense-main"><strong>${esc(e.title)}</strong><small>${esc(e.category)} · ${toJalali(e.date)}</small></div><b class="expense-amount">${money(e.amount)}</b><button class="btn danger" data-delexp="${e.id}">حذف</button></article>`).join('')}</div>`:'<div class="empty">هزینه‌ای ثبت نشده است.</div>';document.querySelectorAll('[data-delexp]').forEach(b=>b.onclick=()=>{state.expenses=state.expenses.filter(e=>e.id!==b.dataset.delexp);save();renderExpenses()})}
+function renderTop(){let sales=state.orders.reduce((s,o)=>s+o.total,0),unpaid=state.orders.filter(o=>!o.paid).reduce((s,o)=>s+o.total,0),todaySales=state.orders.filter(o=>o.closedAt.slice(0,10)===today()).reduce((s,o)=>s+o.total,0);$('topMetrics').innerHTML=`<div class="metric"><small>فروش امروز</small><strong class="gold">${money(todaySales)}</strong></div><div class="metric"><small>کل فروش</small><strong>${money(sales)}</strong></div><div class="metric"><small>مطالبات تسویه‌نشده</small><strong>${money(unpaid)}</strong></div><div class="metric"><small>فاکتورهای ثبت‌شده</small><strong>${fmt(state.orders.length)}</strong></div>`}
+function renderDashboard(){let days=Array.from({length:7},(_,i)=>{let d=new Date();d.setDate(d.getDate()-(6-i));return d.toISOString().slice(0,10)}),vals=days.map(day=>state.orders.filter(o=>o.closedAt.slice(0,10)===day).reduce((s,o)=>s+o.total,0)),max=Math.max(1,...vals);$('salesChart').innerHTML=days.map((d,i)=>`<div class="barcol"><b>${vals[i]?fmt(Math.round(vals[i]/1000))+'k':''}</b><div class="bar" style="height:${Math.max(2,vals[i]/max*115)}px"></div><small>${new Date(d).toLocaleDateString('fa-IR',{day:'numeric',month:'numeric'})}</small></div>`).join('');let exp=state.expenses.reduce((s,e)=>s+e.amount,0),sales=state.orders.reduce((s,o)=>s+o.total,0);$('dashboardStats').innerHTML=[['درآمد بازی‌ها',state.orders.reduce((s,o)=>s+o.gameCost,0)],['درآمد بوفه',state.orders.reduce((s,o)=>s+o.buffetCost,0)],['تخفیف‌ها',state.orders.reduce((s,o)=>s+o.discountAmount,0)],['هزینه‌ها',exp],['سود پس از هزینه ثبت‌شده',sales-exp]].map(([k,v])=>`<div class="line"><span>${k}</span><b>${money(v)}</b></div>`).join('');$('recentOrders').innerHTML=state.orders.slice(0,5).map(o=>`<div class="item"><div><strong>فاکتور ${fmt(o.id)} · ${esc(o.customerName)}</strong><small>${esc(o.game)} · ${esc(o.device)}</small></div><b>${money(o.total)}</b></div>`).join('')||'<div class="empty">هنوز فروشی ثبت نشده است.</div>'}
+function makeReport(){
+ let from=fromJalali($('reportFrom').value)||'0000-01-01',to=fromJalali($('reportTo').value)||'9999-12-31',orders=state.orders.filter(o=>o.closedAt.slice(0,10)>=from&&o.closedAt.slice(0,10)<=to).slice().sort((a,b)=>b.closedAt.localeCompare(a.closedAt)),expenses=state.expenses.filter(e=>e.date>=from&&e.date<=to),sales=orders.reduce((s,o)=>s+o.total,0),cost=expenses.reduce((s,e)=>s+e.amount,0),paid=orders.filter(o=>o.paid).reduce((s,o)=>s+o.total,0),unpaid=sales-paid;
+ $('reportResult').innerHTML=`
+ <div class="metrics report-metrics">
+  <div class="metric"><small>مجموع فروش</small><strong class="gold">${money(sales)}</strong></div>
+  <div class="metric"><small>مبالغ تسویه‌شده</small><strong>${money(paid)}</strong></div>
+  <div class="metric"><small>مطالبات تسویه‌نشده</small><strong>${money(unpaid)}</strong></div>
+  <div class="metric"><small>سود پس از هزینه‌ها</small><strong>${money(sales-cost)}</strong></div>
+ </div>
+ <div class="report-meta-grid">
+  <div class="report-meta"><span>تعداد فاکتورها</span><b>${fmt(orders.length)}</b></div>
+  <div class="report-meta"><span>هزینه‌های این بازه</span><b>${money(cost)}</b></div>
+ </div>
+ <section class="report-invoice-panel">
+  <header class="report-invoice-heading"><div><h3>جزئیات فاکتورهای ثبت‌شده</h3><small>فاکتورهای بازه انتخاب‌شده</small></div><span class="report-count">${fmt(orders.length)} فاکتور</span></header>
+  ${orders.length?`<div class="report-invoice-list">${orders.map(o=>`<article class="report-invoice-row">
+   <div class="report-invoice-number"><small>شماره فاکتور</small><b>${fmt(o.id)}</b></div>
+   <div class="report-invoice-customer"><small>مشتری</small><b>${esc(o.customerName||'مشتری بدون نام')}</b><span>${esc(o.device||'—')} · ${esc(o.game||'—')}</span></div>
+   <div class="report-invoice-amount"><small>مبلغ فاکتور</small><b>${money(o.total)}</b></div>
+   <div class="report-invoice-state"><small>وضعیت پرداخت</small><span class="report-state ${o.paid?'paid':'unpaid'}">${o.paid?'✓ تسویه‌شده':'● تسویه‌نشده'}</span></div>
+   <div class="report-invoice-date"><small>تاریخ ثبت</small><b>${toJalali(o.closedAt.slice(0,10))}</b></div>
+  </article>`).join('')}</div>`:'<div class="empty report-empty">در بازه انتخاب‌شده فاکتوری ثبت نشده است.</div>'}
+ </section>`
+}
+function renderRates(){ $('rateEditor').innerHTML=Object.entries(state.games).map(([g,p])=>`<div class="item"><b>${esc(g)}</b><input class="control" type="number" min="0" data-rate="${esc(g)}" value="${p}" style="max-width:180px"><button class="btn danger" data-delgame="${esc(g)}">حذف</button></div>`).join('');$('tierEditor').innerHTML=Object.entries(state.tiers).map(([g,t])=>`<div class="item"><b>${esc(g)}</b><label>۲ دسته/نفر <input class="control" type="number" data-tier="${esc(g)}-2" value="${t[2]??''}"></label><label>۴ دسته/نفر <input class="control" type="number" data-tier="${esc(g)}-4" value="${t[4]??''}"></label></div>`).join('');document.querySelectorAll('[data-delgame]').forEach(b=>b.onclick=()=>{delete state.games[b.dataset.delgame];delete state.tiers[b.dataset.delgame];renderRates();renderGameSelect()})}
+function backup(){let blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='coffee-seven-backup-'+today()+'.json';a.click();URL.revokeObjectURL(a.href);toast('فایل پشتیبان آماده شد.')}
+
+function backupPdf(){
+ const data=JSON.stringify(state,null,2);
+ const safe=data.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+ const w=window.open('','_blank');
+ if(!w){toast('اجازه بازشدن پنجره چاپ را بده.');return}
+ w.document.write(`<!doctype html><html lang="fa" dir="rtl"><meta charset="utf-8"><title>پشتیبان Coffee Seven</title>
+ <style>body{font-family:Tahoma,Arial,sans-serif;padding:24px;color:#222}h1{font-size:22px}p{color:#555;font-size:12px}.data{white-space:pre-wrap;word-break:break-word;direction:ltr;text-align:left;font:10px/1.55 monospace;background:#f4f4f4;border:1px solid #ddd;padding:14px;border-radius:8px}@media print{body{padding:0}}</style>
+ <h1>پشتیبان اطلاعات Coffee Seven</h1><p>تاریخ تهیه: ${new Date().toLocaleString('fa-IR')} · این فایل برای مشاهده و چاپ است؛ برای بازیابی از فایل JSON استفاده کنید.</p><pre class="data">${safe}</pre><script>window.onload=()=>window.print()<\/script></html>`);
+ w.document.close();
+}
+function renderAll(){renderGameSelect();renderDeviceSelect();renderProductSelect();renderCart();renderDrafts();renderOrders();renderCustomers();renderInventory();renderExpenses();renderTop();renderDevices();renderDashboard()}
+$('addProduct').onclick=addCart;$('newDraft').onclick=createDraft;$('startSession').onclick=startSession;$('finishSession').onclick=finishSession;$('saveInvoice').onclick=()=>{let d=active();if(d?.started){if(!$('end').value)$('end').value=new Date().toTimeString().slice(0,5);prepareInvoiceConfirmation()}else toast('برای ثبت نهایی، ابتدا سانس را شروع و سپس پایان آن را ثبت کن.');};$('clearDraft').onclick=()=>{if(confirm('فاکتور فعلی پاک شود؟')){let d=active();state.drafts=state.drafts.filter(x=>x.id!==d.id);state.sessions=state.sessions.filter(s=>s.draftId!==d.id);save();activeDraft=null;createDraft();renderDevices()}};
+['game','tableNo','guests','customerName','customerId','discount','start','end'].forEach(id=>$(id).addEventListener('input',()=>{syncDraft();calc()}));$('game').onchange=()=>{let g=$('game').value;$('guestLabel').textContent=['VIP','PS5','PS4','XBOX'].includes(g)?'تعداد دسته':'تعداد نفر';syncDraft();calc()};
+$('orderSearch').oninput=renderOrders;$('paymentFilter').onchange=renderOrders;
+$('customerSearch').oninput=renderCustomers;$('cancelCustomerEdit').onclick=resetCustomerForm;$('saveCustomer').onclick=()=>{let n=$('custName').value.trim(),id=$('custId').value.trim();if(!n&&!id)return toast('نام یا شناسه را وارد کن.');const duplicate=state.customers.find(c=>c.id!==editingCustomerId&&id&&c.key===id);if(duplicate)return toast('این شماره یا شناسه قبلاً برای مشتری دیگری ثبت شده است.');if(editingCustomerId){let c=state.customers.find(x=>x.id===editingCustomerId);if(!c)return resetCustomerForm();const oldName=c.name,oldKey=c.key;c.name=n||'بدون نام';c.key=id;state.orders.forEach(o=>{if(o.customerKey===c.id){o.customerName=c.name;o.customerId=c.key||''}});resetCustomerForm();save();renderCustomers();renderOrders();toast('اطلاعات مشتری ویرایش شد.')}else{let c=findOrCreateCustomer(n,id);c.name=n||c.name;save();resetCustomerForm();renderCustomers();toast('مشتری ذخیره شد.')}};
+$('stockSearch').oninput=renderInventory;$('stockFilter').onchange=renderInventory;
+$('saveStock').onclick=()=>{let name=$('stockName').value.trim(),price=+$('stockPrice').value,cost=+$('stockCost').value;if(!name||price<0)return toast('نام و قیمت فروش را وارد کن.');state.products.push({id:uid(),name,category:$('stockCategory').value,cost,price,stock:Math.max(0,+$('stockQty').value||0),min:Math.max(0,+$('stockMin').value||0)});save();['stockName','stockCost','stockPrice','stockQty'].forEach(id=>$(id).value='');renderInventory();toast('محصول به انبار اضافه شد.')};
+$('addExpense').onclick=()=>{let title=$('expenseTitle').value.trim(),amount=+$('expenseAmount').value,date=fromJalali($('expenseDate').value)||today();if(!title||amount<=0)return toast('عنوان و مبلغ هزینه را وارد کن.');if(!fromJalali($('expenseDate').value)&&$('expenseDate').value.trim())return toast('تاریخ را به‌شکل شمسی ۱۴۰۵/۰۸/۱۳ وارد کن.');state.expenses.push({id:uid(),title,category:$('expenseCategory').value,amount,date});save();$('expenseTitle').value='';$('expenseAmount').value='';setJalaliInput('expenseDate',today());renderExpenses();toast('هزینه ثبت شد.')};
+const nowParts=jalaliParts(today());setJalaliInput('expenseDate',today());setJalaliInput('reportFrom',`${nowParts.year}-${String(nowParts.month).padStart(2,'0')}-01`);setJalaliInput('reportTo',today());$('makeReport').onclick=()=>{if($('reportFrom').value&&!fromJalali($('reportFrom').value))return toast('تاریخ شروع را شمسی و درست وارد کن.');if($('reportTo').value&&!fromJalali($('reportTo').value))return toast('تاریخ پایان را شمسی و درست وارد کن.');makeReport()};$('printReport').onclick=()=>window.print();
+$('themeBtn').onclick=()=>{state.theme=state.theme==='dark'?'light':'dark';document.body.classList.toggle('light',state.theme==='light');save()};
+$('adminBtn').onclick=()=>{$('settingsModal').showModal();renderRates();renderAdminDevices()};
+document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>$(b.dataset.close).close());document.querySelectorAll('[data-admin]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-admin]').forEach(x=>x.classList.toggle('active',x===b));['rates','devices','backup'].forEach(x=>$('admin-'+x).classList.toggle('hidden',x!==b.dataset.admin))});
+$('saveRates').onclick=()=>{document.querySelectorAll('[data-rate]').forEach(i=>state.games[i.dataset.rate]=Math.max(0,+i.value||0));document.querySelectorAll('[data-tier]').forEach(i=>{let [g,n]=i.dataset.tier.split('-');state.tiers[g]??={};state.tiers[g][n]=Math.max(0,+i.value||0)});save();renderGameSelect();calc();toast('تعرفه‌ها ذخیره شدند.')};
+$('addDevice').onclick=addDevice;
+$('backupBtn').onclick=()=>$('backupChoiceModal').showModal();$('backupAsJson').onclick=()=>{backup();$('backupChoiceModal').close()};$('backupAsPdf').onclick=()=>{backupPdf();$('backupChoiceModal').close()};$('exportBackup').onclick=backup;$('importBackup').onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let x=JSON.parse(await f.text());if(!x.games||!x.orders||!x.products)throw Error();if(!confirm('اطلاعات فعلی با پشتیبان جایگزین شود؟'))return;state={...defaults(),...x};save();activeDraft=null;renderAll();if(state.drafts.length)loadDraft(state.drafts[0]);else createDraft();toast('بازیابی اطلاعات انجام شد.')}catch(err){toast('فایل پشتیبان معتبر نیست.')}e.target.value=''};
+$('printInvoice').onclick=()=>{let w=window.open('','_blank');if(!w)return toast('اجازه بازشدن پنجره چاپ را بده.');w.document.write('<html lang="fa" dir="rtl"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>فاکتور Coffee Seven</title><style>@page{size:A4;margin:12mm}*{box-sizing:border-box;print-color-adjust:exact;-webkit-print-color-adjust:exact}body{font-family:Vazirmatn,Tahoma,sans-serif;padding:10px;color:#f7f7f8;background:#101013}.invoice-paper{max-width:100%;padding:22px;box-shadow:none;border:1px solid #34353b;border-radius:14px;background:linear-gradient(155deg,#17181c,#0d0e11);color:#f5f5f6}.invoice-brand{display:flex;align-items:center;gap:12px;padding-bottom:15px;border-bottom:2px solid #ffcf32}.invoice-mark{width:46px;height:46px;background:#a91f25;color:#fff;border-radius:13px;display:grid;place-items:center;font-size:25px;font-weight:900}.invoice-brand h2{color:#fff;margin:0;font:900 18px Arial}.invoice-brand small{color:#aaa;font:700 9px Arial;letter-spacing:1.5px}.invoice-number{margin-right:auto;text-align:left}.invoice-number small,.invoice-info small{color:#aaa;font-size:10px}.invoice-number b{color:#ffcf32}.invoice-title{display:flex;justify-content:space-between;margin:16px 0 10px}.invoice-info{display:grid;grid-template-columns:1fr 1fr;gap:10px;background:#1b1c21;border:1px solid #383940;border-radius:10px;padding:12px}.invoice-info>div{display:flex;flex-direction:column}.invoice-info b{color:#fff;font-size:11px}.invoice-section-title{color:#fff;font-size:13px;margin:17px 0 8px}.invoice-items{width:100%;min-width:0;border-collapse:collapse;font-size:10px}.invoice-items th{background:#292a30;color:#ddd}.invoice-items td,.invoice-items th{border:1px solid #414249;padding:9px 7px;text-align:right;white-space:normal}.invoice-items td{color:#f4f4f5}.invoice-totals{width:100%;margin:14px 0 0 auto}.invoice-totals>div{display:flex;justify-content:space-between;padding:8px;border-bottom:1px solid #34353b;font-size:11px}.invoice-totals span{color:#bbb}.invoice-totals b{color:#fff}.invoice-totals .invoice-grand{margin-top:8px;padding:12px;background:#ffcf32;color:#111;border-radius:8px}.invoice-totals .invoice-grand span,.invoice-totals .invoice-grand b{color:#111;font-weight:900}.invoice-footer{display:flex;justify-content:space-between;align-items:center;margin-top:17px;padding-top:11px;border-top:1px dashed #555}.invoice-footer p{color:#bbb;font-size:10px}.invoice-payment{padding:5px 10px;border-radius:20px;font-size:10px;font-weight:800}.invoice-payment.is-paid{background:#123d2a;color:#65e49b}.invoice-payment.is-unpaid{background:#492319;color:#ffad82}@media print{body{padding:0;background:#101013}}</style>'+ $('invoicePaper').outerHTML+'<script>window.onload=()=>window.print()<\/script></html>');w.document.close()};
+
+$('approveInvoice').onclick=()=>{
+ let d=active();
+ if(!d)return toast('فاکتور فعال پیدا نشد.');
+ $('confirmInvoiceModal').close();
+ finalize();
+};
+$('rejectInvoice').onclick=()=>{
+ $('confirmInvoiceModal').close();
+ let d=active();
+ if(d){loadDraft(d);switchView('invoice');toast('فاکتور ثبت نشد؛ اطلاعات را ویرایش کن و دوباره برای تأیید اقدام کن.')}
+};
+$('closeInvoice').onclick=()=>$('invoiceModal').close();
+$('todayText').textContent=new Date().toLocaleDateString('fa-IR',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+document.body.classList.toggle('light',state.theme==='light');
+setInterval(()=>{if(document.visibilityState==='visible'){renderDevices();let s=state.sessions;if(s.some(x=>Date.now()-new Date(x.startedAt).getTime()>50*60000))toast('یادآوری: حداقل یک سانس بیش از ۵۰ دقیقه فعال است.')}},30000);
+window.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='n'){e.preventDefault();createDraft()}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'){e.preventDefault();syncDraft();save();toast('ذخیره شد.')}});
+$('adminBtn').addEventListener('click',()=>{});
+$('startSession').addEventListener('click',()=>{let d=active();if(d&&!state.sessions.some(s=>s.draftId===d.id)){state.sessions.push({draftId:d.id,device:d.device,startedAt:d.startedAt});save()}});
+
+renderAll();if(state.drafts.length)loadDraft(state.drafts[0]);else createDraft();
+
+
+// تقویم انتخاب تاریخ فارسی/شمسی؛ بدون وابستگی خارجی
+(function initJalaliDatePicker(){
+ const targets=['expenseDate','reportFrom','reportTo'];
+ const faNum=n=>String(n).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);
+ const parseJ=value=>{const v=faDigits(String(value||'')).trim().replace(/[.\-]/g,'/');const m=v.match(/^(\d{4})\/(\d{1,2})\/(\d{1,2})$/);return m?{year:+m[1],month:+m[2],day:+m[3]}:null};
+ const findIso=(y,m,d)=>{for(let t=Date.UTC(y+621,2,1,12);t<=Date.UTC(y+623,2,1,12);t+=86400000){const dt=new Date(t),iso=`${dt.getUTCFullYear()}-${String(dt.getUTCMonth()+1).padStart(2,'0')}-${String(dt.getUTCDate()).padStart(2,'0')}`,p=jalaliParts(iso);if(p&&p.year===y&&p.month===m&&p.day===d)return iso}return ''};
+ const monthNames=['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
+ const weekdays=['ش','ی','د','س','چ','پ','ج'];
+ const overlay=document.createElement('div');overlay.id='jalaliPicker';overlay.innerHTML=`<div class="jalali-picker-panel" role="dialog" aria-modal="true" aria-label="تقویم شمسی"><div class="jalali-picker-head"><strong id="jpTitle">انتخاب تاریخ</strong><div class="jalali-picker-nav"><button type="button" id="jpPrev" aria-label="ماه قبل">‹</button><button type="button" id="jpNext" aria-label="ماه بعد">›</button></div></div><div class="jalali-picker-week">${weekdays.map(x=>`<span>${x}</span>`).join('')}</div><div class="jalali-picker-days" id="jpDays"></div><div class="jalali-picker-actions"><button type="button" id="jpToday">امروز</button><button type="button" id="jpCancel">لغو</button><button type="button" class="confirm" id="jpConfirm">تأیید انتخاب</button></div></div>`;
+ document.body.appendChild(overlay);
+ let target=null,view={year:1405,month:1},chosen=null;
+ const todayIso=today();
+ function monthLength(y,m){for(let d=31;d>=29;d--)if(findIso(y,m,d))return d;return 29}
+ function render(){
+  document.getElementById('jpTitle').textContent=monthNames[view.month-1]+' '+faNum(view.year);
+  const box=document.getElementById('jpDays');box.innerHTML='';
+  const first=findIso(view.year,view.month,1);if(!first)return;
+  const fd=new Date(first+'T12:00:00Z'),offset=(fd.getUTCDay()+1)%7,len=monthLength(view.year,view.month);
+  for(let i=0;i<offset;i++){const blank=document.createElement('span');box.appendChild(blank)}
+  const selected=chosen?parseJ(chosen):null,now=jalaliParts(todayIso);
+  for(let day=1;day<=len;day++){
+   const b=document.createElement('button');b.type='button';b.textContent=faNum(day);
+   if(now&&now.year===view.year&&now.month===view.month&&now.day===day)b.classList.add('today');
+   if(selected&&selected.year===view.year&&selected.month===view.month&&selected.day===day)b.classList.add('selected');
+   b.addEventListener('click',()=>{chosen=`${view.year}/${String(view.month).padStart(2,'0')}/${String(day).padStart(2,'0')}`;render()});box.appendChild(b);
+  }
+ }
+ function openFor(input){target=input;const p=parseJ(input.value)||jalaliParts(todayIso);view={year:p.year,month:p.month};chosen=parseJ(input.value)?`${p.year}/${String(p.month).padStart(2,'0')}/${String(p.day).padStart(2,'0')}`:null;render();overlay.classList.add('open')}
+ function close(){overlay.classList.remove('open');target=null}
+ document.getElementById('jpPrev').onclick=()=>{view.month--;if(view.month<1){view.month=12;view.year--}render()};
+ document.getElementById('jpNext').onclick=()=>{view.month++;if(view.month>12){view.month=1;view.year++}render()};
+ document.getElementById('jpToday').onclick=()=>{const p=jalaliParts(todayIso);view={year:p.year,month:p.month};chosen=toJalali(todayIso).replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d));render()};
+ document.getElementById('jpCancel').onclick=close;overlay.addEventListener('click',e=>{if(e.target===overlay)close()});
+ document.getElementById('jpConfirm').onclick=()=>{if(!target)return;if(!chosen)return toast('یک روز را از تقویم انتخاب کن.');target.value=chosen.replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);target.dispatchEvent(new Event('change',{bubbles:true}));target.dispatchEvent(new Event('input',{bubbles:true}));close()};
+ targets.forEach(id=>{const input=document.getElementById(id);if(!input)return;input.setAttribute('readonly','readonly');input.setAttribute('aria-label','تاریخ شمسی');const wrap=document.createElement('div');wrap.className='date-input-wrap';input.parentNode.insertBefore(wrap,input);wrap.appendChild(input);const btn=document.createElement('button');btn.type='button';btn.className='date-open-btn';btn.textContent='▦ انتخاب تاریخ';btn.addEventListener('click',()=>openFor(input));wrap.appendChild(btn);});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('open'))close()});
 })();
 
-(function(){
- const $=id=>document.getElementById(id);
- function report(){
-  const now=new Date(),key=now.toLocaleDateString("en-CA");
-  const todays=(orders||[]).filter(o=>(o.closedAt||"").slice(0,10)===key);
-  const total=todays.reduce((s,o)=>s+o.total,0);
-  const gameRevenue=todays.reduce((s,o)=>s+(games[o.game]||0)*o.h,0);
-  const buffetRevenue=todays.reduce((s,o)=>s+o.items.reduce((a,p)=>a+p.price*p.qty,0),0);
-  const gc={},ps={};
-  todays.forEach(o=>{gc[o.game]=(gc[o.game]||0)+1;o.items.forEach(p=>{ps[p.name]??={qty:0,revenue:0};ps[p.name].qty+=p.qty;ps[p.name].revenue+=p.price*p.qty})});
-  const box=$("dailyReportContent");box.replaceChildren();
-  const intro=document.createElement("p");intro.textContent="تاریخ گزارش: "+now.toLocaleDateString("fa-IR")+" · فاکتورهای نهایی‌شده: "+fmt(todays.length);box.append(intro);
-  const grid=document.createElement("div");grid.className="report-grid";
-  [["مجموع فروش",money(total)],["درآمد بازی‌ها",money(gameRevenue)],["درآمد بوفه",money(buffetRevenue)],["تعداد فاکتور",fmt(todays.length)]].forEach(([l,v])=>{let c=document.createElement("div");c.className="report-stat";let s=document.createElement("small");s.textContent=l;let b=document.createElement("strong");b.textContent=v;c.append(s,b);grid.append(c)});box.append(grid);
-  function section(title,rows,heads){let sec=document.createElement("section");sec.className="report-section";let h=document.createElement("h3");h.textContent=title;sec.append(h);if(!rows.length){let e=document.createElement("p");e.textContent="اطلاعاتی برای نمایش وجود ندارد.";sec.append(e);box.append(sec);return}let t=document.createElement("table");t.className="report-table";let tr=document.createElement("tr");heads.forEach(x=>{let th=document.createElement("th");th.textContent=x;tr.append(th)});t.append(tr);rows.forEach(row=>{let r=document.createElement("tr");row.forEach(x=>{let td=document.createElement("td");td.textContent=x;r.append(td)});t.append(r)});sec.append(t);box.append(sec)}
-  section("آمار بازی‌ها",Object.entries(gc).map(([n,c])=>[n,fmt(c)+" فاکتور"]),["بازی","تعداد"]);
-  section("فروش بوفه",Object.entries(ps).sort((a,b)=>b[1].revenue-a[1].revenue).map(([n,v])=>[n,fmt(v.qty),money(v.revenue)]),["محصول","تعداد","فروش"]);
-  section("فاکتورهای روز",todays.map(o=>[o.table,o.game,o.start+" تا "+o.end,money(o.total)]),["میز","بازی","زمان","مبلغ"]);
-  $("dailyReportModal").showModal();
- }
- $("closeDay").addEventListener("click",report);
- $("closeReport").addEventListener("click",()=>$("dailyReportModal").close());
- $("doneReport").addEventListener("click",()=>$("dailyReportModal").close());
- $("printReport").addEventListener("click",()=>window.print());
-})();
 </script></body></html>
