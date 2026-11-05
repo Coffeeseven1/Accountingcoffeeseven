@@ -333,7 +333,7 @@ label{font-size:11px}
 <section class="view" id="view-dashboard"><div class="grid"><div class="card"><h2>روند فروش ۷ روز اخیر</h2><div class="chart" id="salesChart"></div></div><div class="card"><h2>خلاصه عملکرد</h2><div id="dashboardStats"></div></div></div><div class="card" style="margin-top:14px"><h2>آخرین فاکتورها</h2><div id="recentOrders"></div></div></section>
 <section class="view" id="view-devices"><div class="card"><div class="row"><h2 style="flex:2">وضعیت میزها و دستگاه‌ها</h2><button class="btn primary" id="addDevice">＋ افزودن میز / دستگاه</button></div><p class="muted">وضعیت هر دستگاه، تایمر سانس و هشدار پایان در این بخش نمایش داده می‌شود.</p><div class="device-grid" id="deviceGrid" style="margin-top:14px"></div></div></section>
 <section class="view" id="view-orders"><div class="card"><div class="orders-toolbar"><h2>فهرست فاکتورها</h2><input class="control" id="orderSearch" placeholder="جست‌وجوی شماره، مشتری، میز..."><select class="control" id="paymentFilter"><option value="all">همه وضعیت‌ها</option><option value="paid">تسویه‌شده</option><option value="unpaid">تسویه‌نشده</option></select></div><div id="ordersTable"></div></div></section>
-<section class="view" id="view-debtors"><div class="metrics" id="debtorMetrics"></div><div class="card"><div class="row" style="justify-content:space-between"><div><h2 style="margin:0">فهرست بدهکاران</h2><p class="muted">افرادی که فاکتور تسویه‌نشده یا مانده بدهی دارند.</p></div><input class="control" id="debtorSearch" placeholder="جست‌وجوی نام یا شماره" style="max-width:280px"></div><div id="debtorList" class="list" style="margin-top:14px"></div></div></section>
+<section class="view" id="view-debtors"><div class="metrics" id="debtorMetrics"></div><div class="card" style="margin-bottom:14px"><h2 style="margin-top:0">ثبت دستی بدهی</h2><p class="muted">مشتری را از فهرست انتخاب کن یا نام را دستی وارد کن؛ سپس مبلغ و تاریخ ایجاد بدهی را ثبت کن.</p><div class="fields"><div class="field"><label>انتخاب مشتری ثبت‌شده</label><select class="control" id="manualDebtCustomer"><option value="">انتخاب مشتری یا ورود دستی</option></select></div><div class="field"><label>نام مشتری</label><input class="control" id="manualDebtName" placeholder="نام مشتری"></div><div class="field"><label>مبلغ بدهی (تومان)</label><input class="control" id="manualDebtAmount" type="number" min="1" step="1000" placeholder="مثلاً ۵۰۰۰۰۰"></div><div class="field"><label>تاریخ ایجاد بدهی</label><input class="control jalali-date" id="manualDebtDate" type="text" inputmode="numeric" placeholder="۱۴۰۵/۰۸/۱۴"></div></div><button class="btn primary" id="addManualDebt" style="margin-top:12px">ثبت بدهی دستی</button></div><div class="card"><div class="row" style="justify-content:space-between"><div><h2 style="margin:0">فهرست بدهکاران</h2><p class="muted">افرادی که فاکتور تسویه‌نشده یا مانده بدهی دارند.</p></div><input class="control" id="debtorSearch" placeholder="جست‌وجوی نام یا شماره" style="max-width:280px"></div><div id="debtorList" class="list" style="margin-top:14px"></div></div></section>
 <section class="view" id="view-customers"><div class="grid"><div class="card"><h2>ثبت / ویرایش مشتری</h2><div class="fields"><div class="field"><label>نام مشتری</label><input class="control" id="custName" name="cs_manage_customer_full_name" autocomplete="off" autocapitalize="words" spellcheck="false"></div><div class="field"><label>شماره تماس یا شناسه یکتا</label><input class="control" id="custId" name="cs_manage_customer_contact_identifier" autocomplete="off" inputmode="tel" spellcheck="false"></div></div><div class="row" style="margin-top:10px;gap:8px"><button class="btn primary" id="saveCustomer">ذخیره مشتری</button><button class="btn" id="cancelCustomerEdit" type="button" hidden>لغو ویرایش</button></div><div class="customer-form-state" id="customerFormState"></div><div class="divider"></div><div class="row"><h2 style="flex:2">فهرست مشتریان</h2><input class="control" id="customerSearch" placeholder="جست‌وجوی نام یا شماره مشتری" style="max-width:260px"></div><div id="customerList" class="list"></div></div><div class="card"><h2>باشگاه مشتریان</h2><p class="muted">به ازای هر ۱۰۰ هزار تومان خرید، یک امتیاز وفاداری ثبت می‌شود. امتیازها با ثبت فاکتور به‌روز می‌شوند.</p><div id="loyaltySummary"></div></div></div></section>
 <section class="view" id="view-inventory"><div class="grid inventory-top"><div class="card inventory-form"><h2>افزودن محصول به انبار</h2><div class="fields"><div class="field"><label>نام محصول</label><input class="control" id="stockName" placeholder="مثلاً قهوه"></div><div class="field"><label>دسته‌بندی</label><select class="control" id="stockCategory"><option value="نوشیدنی">نوشیدنی</option><option value="خوراکی">خوراکی</option></select></div><div class="field"><label>قیمت خرید</label><input class="control" id="stockCost" type="number" min="0"></div><div class="field"><label>قیمت فروش</label><input class="control" id="stockPrice" type="number" min="0"></div><div class="field"><label>موجودی اولیه</label><input class="control" id="stockQty" type="number" min="0" value="0"></div><div class="field"><label>حد هشدار موجودی</label><input class="control" id="stockMin" type="number" min="0" value="5"></div></div><button class="btn primary" id="saveStock" style="margin-top:12px">＋ افزودن محصول</button></div><div class="card inventory-summary"><h2>ارزش و هشدار انبار</h2><div id="stockStats"></div></div></div><div class="card inventory-products"><div class="inventory-heading"><h2>موجودی محصولات</h2><span class="muted" id="stockCount"></span></div><div class="inventory-tools"><input class="control" id="stockSearch" placeholder="جست‌وجوی نام محصول..."><select class="control" id="stockFilter"><option value="all">همه دسته‌ها</option><option value="نوشیدنی">نوشیدنی</option><option value="خوراکی">خوراکی</option><option value="low">کم‌موجود</option></select></div><div class="tablewrap" id="stockTable"></div></div></section>
 <section class="view" id="view-expenses"><div class="grid"><div class="card"><h2>ثبت هزینه</h2><div class="fields"><div class="field"><label>عنوان هزینه</label><input class="control" id="expenseTitle" placeholder="مثلاً برق، اجاره، خرید مواد"></div><div class="field"><label>دسته‌بندی</label><select class="control" id="expenseCategory"><option>قبوض</option><option>اجاره</option><option>خرید کالا</option><option>حقوق</option><option>تعمیرات</option><option>سایر</option></select></div><div class="field"><label>مبلغ (تومان)</label><input class="control" id="expenseAmount" type="number" min="1"></div><div class="field"><label>تاریخ</label><input class="control" id="expenseDate" type="text" inputmode="numeric" placeholder="۱۴۰۵/۰۸/۱۳" autocomplete="off"></div></div><button class="btn primary" id="addExpense" style="margin-top:10px">ثبت هزینه</button></div><div class="card"><h2>خلاصه مالی</h2><div id="profitStats"></div></div></div><div class="card" style="margin-top:14px"><h2>هزینه‌های ثبت‌شده</h2><div id="expenseTable"></div></div></section>
@@ -374,13 +374,14 @@ function toJalali(iso){const p=jalaliParts(iso);return p?`${p.year}/${String(p.m
 function fromJalali(value){const v=faDigits(value).trim().replace(/[.\-]/g,'/'),m=v.match(/^(\d{4})\/(\d{1,2})\/(\d{1,2})$/);if(!m)return '';const jy=+m[1],jm=+m[2],jd=+m[3];if(jm<1||jm>12||jd<1||jd>(jm<=6?31:jm<=11?30:30))return '';const base=Date.UTC(jy+621,jm+1,1,12);for(let off=0;off<=40;off++){const dt=new Date(base+off*86400000),iso=`${dt.getUTCFullYear()}-${String(dt.getUTCMonth()+1).padStart(2,'0')}-${String(dt.getUTCDate()).padStart(2,'0')}`,p=jalaliParts(iso);if(p&&p.year===jy&&p.month===jm&&p.day===jd)return iso}return ''}
 function setJalaliInput(id,iso){const el=$(id);if(el)el.value=toJalali(iso)}
 const KEY='coffeeSevenComplete_v1';
-const defaults=()=>({games:{VIP:180000,PS5:150000,PS4:100000,XBOX:130000,بیلیارد:90000,قهوه:0},coffeePrices:{'۹۰/۱۰':{single:65000,double:95000},'۸۰/۲۰':{single:65000,double:95000},'۷۰/۳۰':{single:65000,double:95000},'۵۰/۵۰':{single:65000,double:95000},'۱۰۰٪ عربیکا':{single:85000,double:125000},'۱۰۰٪ روبوستا':{single:55000,double:80000}},tiers:{VIP:{2:180000,4:250000},PS5:{2:150000,4:220000},PS4:{2:100000,4:160000},XBOX:{2:130000,4:190000},بیلیارد:{2:90000,4:150000}},products:[{id:'p1',name:'آب معدنی',category:'نوشیدنی',cost:5000,price:12000,stock:50,min:8},{id:'p2',name:'نوشابه',category:'نوشیدنی',cost:18000,price:30000,stock:35,min:6},{id:'p3',name:'چیپس',category:'خوراکی',cost:25000,price:40000,stock:25,min:5},{id:'p4',name:'قهوه',category:'نوشیدنی',cost:35000,price:65000,stock:20,min:5}],devices:['میز ۱','میز ۲','میز ۳','PS4-1','PS4-2','PS5-1','VIP-1','بیلیارد'],orders:[],drafts:[],customers:[],expenses:[],sessions:[],shiftReports:[],seq:1,theme:'dark'});
+const defaults=()=>({games:{VIP:180000,PS5:150000,PS4:100000,XBOX:130000,بیلیارد:90000,قهوه:0},coffeePrices:{'۹۰/۱۰':{single:65000,double:95000},'۸۰/۲۰':{single:65000,double:95000},'۷۰/۳۰':{single:65000,double:95000},'۵۰/۵۰':{single:65000,double:95000},'۱۰۰٪ عربیکا':{single:85000,double:125000},'۱۰۰٪ روبوستا':{single:55000,double:80000}},tiers:{VIP:{2:180000,4:250000},PS5:{2:150000,4:220000},PS4:{2:100000,4:160000},XBOX:{2:130000,4:190000},بیلیارد:{2:90000,4:150000}},products:[{id:'p1',name:'آب معدنی',category:'نوشیدنی',cost:5000,price:12000,stock:50,min:8},{id:'p2',name:'نوشابه',category:'نوشیدنی',cost:18000,price:30000,stock:35,min:6},{id:'p3',name:'چیپس',category:'خوراکی',cost:25000,price:40000,stock:25,min:5},{id:'p4',name:'قهوه',category:'نوشیدنی',cost:35000,price:65000,stock:20,min:5}],devices:['میز ۱','میز ۲','میز ۳','PS4-1','PS4-2','PS5-1','VIP-1','بیلیارد'],orders:[],drafts:[],customers:[],manualDebts:[],expenses:[],sessions:[],shiftReports:[],seq:1,theme:'dark'});
 let state=load(),activeDraft=null,currentInvoice=null,editingCustomerId=null;
 function load(){
  try{
   let x=JSON.parse(localStorage.getItem(KEY));
   if(!x)return defaults();
   let data={...defaults(),...x};
+  data.manualDebts=Array.isArray(data.manualDebts)?data.manualDebts:[];
   // Keep customer name and contact fields canonical; repair legacy records only
   // when the name field unmistakably contains a phone-like value.
   const looksLikeContact=v=>/^[+\d۰-۹٠-٩\s()\-]{7,}$/.test(String(v||'').trim());
@@ -402,21 +403,19 @@ function load(){
    if(o.customerId==null)o.customerId=o.phone??o.customerKeyText??o.contact??'';
    normalizePair(o,'customerName','customerId');
   });
-  // Drafts and running sessions are tab-local only. A newly opened page starts
-  // with an empty workspace; a refresh of the same tab restores its own drafts.
-  const navType=performance.getEntriesByType?.('navigation')?.[0]?.type||'navigate';
+  // Open invoices and running sessions are shared across tabs and survive
+  // closing/reopening a tab or browser. Migrate any legacy tab-local drafts once.
   const TAB_KEY='coffeeSevenTabDrafts_v2';
-  let tab=null;
-  try{tab=JSON.parse(sessionStorage.getItem(TAB_KEY)||'null')}catch(e){tab=null}
-  if(navType==='navigate'&&tab&&Array.isArray(tab.drafts)&&tab.drafts.length){
-   tab={drafts:[],sessions:[]};
-   sessionStorage.setItem(TAB_KEY,JSON.stringify(tab));
-  }
-  if(tab&&Array.isArray(tab.drafts)){
-   data.drafts=tab.drafts;data.sessions=Array.isArray(tab.sessions)?tab.sessions:[];
+  const sharedHasDrafts=Array.isArray(x.drafts)&&x.drafts.length>0;
+  let legacyTab=null;
+  try{legacyTab=JSON.parse(sessionStorage.getItem(TAB_KEY)||'null')}catch(e){legacyTab=null}
+  if(sharedHasDrafts){
+   data.drafts=x.drafts;data.sessions=Array.isArray(x.sessions)?x.sessions:[];
+  }else if(legacyTab&&Array.isArray(legacyTab.drafts)&&legacyTab.drafts.length){
+   data.drafts=legacyTab.drafts;data.sessions=Array.isArray(legacyTab.sessions)?legacyTab.sessions:[];
   }else{
-   data.drafts=[];data.sessions=[];
-   try{sessionStorage.setItem(TAB_KEY,JSON.stringify({drafts:[],sessions:[]}))}catch(e){}
+   data.drafts=Array.isArray(x.drafts)?x.drafts:[];
+   data.sessions=Array.isArray(x.sessions)?x.sessions:[];
   }
   // One-time migration from the old 1001-based invoice numbering to 1-based numbering.
   if(!data.invoiceSequenceMigrated){
@@ -432,11 +431,27 @@ function load(){
  }catch(e){return defaults()}
 }
 function save(){
- // Never put in-progress invoices into shared LocalStorage.
- const shared={...state,drafts:[],sessions:[]};
- localStorage.setItem(KEY,JSON.stringify(shared));
+ // Open invoices and sessions are business-critical working data: persist them
+ // in LocalStorage so every tab and a reopened browser can restore them.
+ localStorage.setItem(KEY,JSON.stringify(state));
  try{sessionStorage.setItem('coffeeSevenTabDrafts_v2',JSON.stringify({drafts:state.drafts||[],sessions:state.sessions||[]}));}catch(e){}
 }
+// Keep tabs in sync when another tab creates, edits, closes or starts an invoice.
+window.addEventListener('storage',e=>{
+ if(e.key!==KEY||!e.newValue)return;
+ try{
+  const incoming=JSON.parse(e.newValue);
+  if(!incoming||!Array.isArray(incoming.drafts))return;
+  const currentId=activeDraft;
+  state={...state,...incoming,drafts:incoming.drafts,sessions:Array.isArray(incoming.sessions)?incoming.sessions:[]};
+  if(currentId&&state.drafts.some(d=>d.id===currentId))loadDraft(state.drafts.find(d=>d.id===currentId));
+  else if(state.drafts.length)loadDraft(state.drafts[0]);
+  else {activeDraft=null;createDraft()}
+  renderDrafts();renderDevices();
+  try{sessionStorage.setItem('coffeeSevenTabDrafts_v2',JSON.stringify({drafts:state.drafts,sessions:state.sessions}))}catch(err){}
+  toast('فاکتورهای باز در این تب به‌روزرسانی شدند.');
+ }catch(err){console.warn('Could not sync shared invoices',err)}
+});
 function toast(t){$('toast').textContent=t;$('toast').classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>$('toast').classList.remove('show'),2800)}
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function switchView(v){document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id==='view-'+v));document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===v));if(v==='dashboard')renderDashboard();if(v==='devices')renderDevices();if(v==='orders')renderOrders();if(v==='debtors')renderDebtors();if(v==='customers')renderCustomers();if(v==='inventory')renderInventory();if(v==='expenses')renderExpenses();if(v==='reports'){makeReport();renderShiftHistory()}}
@@ -461,14 +476,17 @@ function renderProductSelect(){let old=$('product').value;$('product').innerHTML
 function renderBuffetCoffeeControls(){let p=state.products.find(x=>x.id===$('product').value),on=!!p&&p.name.trim()==='قهوه';$('buffetCoffeeSizeField').classList.toggle('hidden',!on);$('buffetCoffeeBlendField').classList.toggle('hidden',!on);let old=$('buffetCoffeeBlend').value,blends=Object.keys(state.coffeePrices||{});$('buffetCoffeeBlend').innerHTML=blends.map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join('');$('buffetCoffeeBlend').value=state.coffeePrices[old]?old:(blends[0]||'');$('buffetCoffeeSize').value=$('buffetCoffeeSize').value||'single'}
 function buffetCoffeePrice(){let blend=$('buffetCoffeeBlend').value,size=$('buffetCoffeeSize').value;return Number(state.coffeePrices?.[blend]?.[size]||0)}
 function renderCart(){let d=active(),box=$('cart');box.innerHTML='';if(!d||!d.cart.length){box.innerHTML='<div class="empty">محصولی به فاکتور اضافه نشده است.</div>';return}d.cart.forEach((p,i)=>{let x=document.createElement('div');x.className='item';x.innerHTML=`<div><strong>${esc(p.name)}</strong><small>${fmt(p.qty)} عدد × ${money(p.price)}</small></div><b>${money(p.qty*p.price)}</b><button class="btn danger" data-remove="${i}">حذف</button>`;box.append(x)});box.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{d.cart.splice(+b.dataset.remove,1);save();renderCart();calc()})}
-function renderDrafts(){let box=$('drafts');box.innerHTML='';if(!state.drafts.length){box.innerHTML='<div class="empty">فاکتور بازی وجود ندارد.</div>';return}state.drafts.forEach((d,i)=>{let x=document.createElement('div');x.className='item';x.innerHTML=`<div><strong>فاکتور باز ${fmt(i+1)} ${d.customerName?'· '+esc(d.customerName):''}</strong><small>${esc(d.device||'بدون میز')} · ${d.started?'سانس فعال':'پیش‌نویس'}</small></div><button class="btn" data-open="${d.id}">بازکردن</button><button class="btn danger" data-del="${d.id}">حذف</button>`;box.append(x)});box.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>loadDraft(state.drafts.find(d=>d.id===b.dataset.open)));box.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{if(confirm('این فاکتور باز حذف شود؟')){state.drafts=state.drafts.filter(d=>d.id!==b.dataset.del);if(activeDraft===b.dataset.del){activeDraft=null;if(state.drafts.length)loadDraft(state.drafts[0]);else createDraft()}save();renderDrafts()}})}
+function renderDrafts(){let box=$('drafts');box.innerHTML='';if(!state.drafts.length){box.innerHTML='<div class="empty">فاکتور بازی وجود ندارد.</div>';return}state.drafts.forEach((d,i)=>{let x=document.createElement('div');x.className='item';x.innerHTML=`<div><strong>فاکتور باز ${fmt(i+1)} ${d.customerName?'· '+esc(d.customerName):''}</strong><small>${esc(d.device||'بدون میز')} · ${d.started?'سانس فعال':'پیش‌نویس'}</small></div><button class="btn" data-open="${d.id}">بازکردن</button><button class="btn danger" data-del="${d.id}">حذف</button>`;box.append(x)});box.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>loadDraft(state.drafts.find(d=>d.id===b.dataset.open)));box.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{if(confirm('این فاکتور باز حذف شود؟')){const id=b.dataset.del;state.drafts=state.drafts.filter(d=>d.id!==id);state.sessions=state.sessions.filter(x=>x.draftId!==id);if(activeDraft===id){activeDraft=null;if(state.drafts.length)loadDraft(state.drafts[0]);else createDraft()}save();renderDrafts();renderDevices()}})}
 function addCart(){let d=active(),p=state.products.find(x=>x.id===$('product').value),q=Math.max(1,+$('qty').value||1);if(!p)return toast('محصول را انتخاب کن.');if(p.stock<q)return toast('موجودی محصول کافی نیست.');let isCoffee=p.name.trim()==='قهوه',size=$('buffetCoffeeSize').value||'single',blend=$('buffetCoffeeBlend').value||Object.keys(state.coffeePrices||{})[0],price=isCoffee?Number(state.coffeePrices?.[blend]?.[size]||0):p.price;if(isCoffee&&(!blend||price<=0))return toast('ابتدا تعرفه تک/دوبل و ترکیب قهوه را در تنظیمات تعیین کن.');let label=isCoffee?`قهوه · ${size==='double'?'دوبل':'تک'} · ${blend}`:p.name,key=isCoffee?`${p.id}-${size}-${blend}`:p.id,old=d.cart.find(x=>(x.variantKey||x.id)===key);if(old)old.qty+=q;else d.cart.push({id:p.id,variantKey:key,name:label,price,qty:q,cost:p.cost,coffeeSize:isCoffee?size:null,coffeeBlend:isCoffee?blend:null});save();renderCart();calc();$('product').value='';$('qty').value=1;renderBuffetCoffeeControls()}
-function startSession(){let d=active();if(!d)return;if(!$('game').value||!$('tableNo').value)return toast('نوع بازی و میز/دستگاه را انتخاب کن.');let occupied=state.sessions.find(s=>String(s.device)===String($('tableNo').value)&&s.draftId!==d.id);if(occupied)return toast('این میز یا دستگاه هم‌اکنون مشغول است.');let selected=$('start').value;if(!/^([01]\d|2[0-3]):[0-5]\d$/.test(selected||''))return toast('ساعت شروع سانس را درست وارد کن.');let now=new Date(),[sh,sm]=selected.split(':').map(Number);let startAt=new Date(now.getFullYear(),now.getMonth(),now.getDate(),sh,sm,0,0);if(startAt.getTime()>now.getTime())return toast('ساعت شروع نمی‌تواند در آینده باشد.');if(!state.devices.map(String).includes(String($('tableNo').value)))state.devices.push(String($('tableNo').value));d.started=true;d.startedAt=startAt.toISOString();d.start=selected;syncDraft();save();renderDevices();renderDrafts();calc();toast('سانس از ساعت انتخاب‌شده شروع شد.')}
+function startSession(){let d=active();if(!d)return;if(!$('game').value||!$('tableNo').value)return toast('نوع بازی و میز/دستگاه را انتخاب کن.');let occupied=state.sessions.find(s=>String(s.device)===String($('tableNo').value)&&s.draftId!==d.id);if(occupied)return toast('این میز یا دستگاه هم‌اکنون مشغول است.');let selected=$('start').value;if(!/^([01]\d|2[0-3]):[0-5]\d$/.test(selected||''))return toast('ساعت شروع سانس را درست وارد کن.');let now=new Date(),[sh,sm]=selected.split(':').map(Number);let startAt=new Date(now.getFullYear(),now.getMonth(),now.getDate(),sh,sm,0,0);if(startAt.getTime()>now.getTime())return toast('ساعت شروع نمی‌تواند در آینده باشد.');if(!state.devices.map(String).includes(String($('tableNo').value)))state.devices.push(String($('tableNo').value));d.started=true;d.startedAt=startAt.toISOString();d.start=selected;state.sessions=state.sessions.filter(x=>x.draftId!==d.id);state.sessions.push({draftId:d.id,device:d.device,startedAt:d.startedAt});save();renderDevices();renderDrafts();calc();toast('سانس از ساعت انتخاب‌شده شروع شد.')}
 function finishSession(){
  let d=active();
  if(!d?.started)return toast('ابتدا سانس را شروع کن.');
  if(!$('end').value)$('end').value=new Date().toTimeString().slice(0,5);
  syncDraft();
+ // پایان سانس، وضعیت اشغال دستگاه را فوراً آزاد می‌کند؛ فاکتور تا زمان ثبت نهایی باز می‌ماند.
+ state.sessions=state.sessions.filter(x=>x.draftId!==d.id);
+ save();renderDevices();
  prepareInvoiceConfirmation();
 }
 function prepareInvoiceConfirmation(){
@@ -537,6 +555,12 @@ function renderDebtors(){
   for(const o of invoices){if(remaining<=0)break;const due=dueAmount(o),portion=Math.min(due,remaining);if(portion<=0)continue;o.paidAmount=paidAmount(o)+portion;o.payments=Array.isArray(o.payments)?o.payments:[];o.payments.push({amount:portion,date:iso,method,recordedAt:new Date().toISOString()});o.paid=o.paidAmount>=(Number(o.total)||0);remaining-=portion;}
   save();renderDebtors();renderOrders();renderTop();makeReport();toast('دریافت وجه با موفقیت ثبت شد و از مانده بدهی کسر شد.');
  });
+ // Manual debt entries are independent of invoices and remain visible in this list.
+ const manual=state.manualDebts||[];
+ const manualHtml=manual.filter(d=>!q||`${d.name} ${d.contact||''}`.toLocaleLowerCase('fa').includes(q)).map(d=>`<article class="debtor-card"><div class="debtor-head"><div><strong>${esc(d.name)}</strong><div class="muted">بدهی دستی · تاریخ ثبت ${toJalali(d.date)}</div></div><div class="debtor-balance">${money(d.amount)}</div></div></article>`).join('');
+ if(manualHtml){$('debtorList').insertAdjacentHTML('beforeend',manualHtml)}
+ const customerSelect=$('manualDebtCustomer');
+ if(customerSelect){const current=customerSelect.value;customerSelect.innerHTML='<option value="">انتخاب مشتری یا ورود دستی</option>'+state.customers.slice().sort((a,b)=>(a.name||'').localeCompare(b.name||'','fa')).map(c=>`<option value="${esc(c.id)}">${esc(c.name)}${c.key?' · '+esc(c.key):''}</option>`).join('');customerSelect.value=current}
 }
 function renderOrders(){
  let q=($('orderSearch').value||'').trim().toLowerCase(),f=$('paymentFilter').value;
@@ -562,6 +586,8 @@ function renderOrders(){
  document.querySelectorAll('[data-view-invoice]').forEach(b=>b.onclick=()=>{let o=state.orders.find(x=>x.id==b.dataset.viewInvoice);if(o)showInvoice(o)});
 }
 function renderDevices(){
+ // Only a session linked to an existing, started open invoice can keep a device occupied.
+ state.sessions=state.sessions.filter(s=>{const d=state.drafts.find(x=>x.id===s.draftId);return !!d&&!!d.started;});
  let box=$('deviceGrid'); if(!box)return; box.innerHTML='';
  const activeCount=state.devices.filter(device=>state.sessions.some(x=>String(x.device)===String(device))).length;
  const freeCount=Math.max(0,state.devices.length-activeCount);
@@ -682,6 +708,8 @@ function renderAll(){renderCustomerOptions();renderGameSelect();renderDeviceSele
 $('addProduct').onclick=addCart;$('product').addEventListener('change',renderBuffetCoffeeControls);['buffetCoffeeSize','buffetCoffeeBlend'].forEach(id=>$(id).addEventListener('change',()=>{let p=state.products.find(x=>x.id===$('product').value);if(p&&p.name.trim()==='قهوه'){let price=buffetCoffeePrice();$('product').selectedOptions[0].textContent=`قهوه · ${money(price)} · موجودی ${fmt(p.stock)}`}}));$('newDraft').onclick=createDraft;$('startSession').onclick=startSession;$('finishSession').onclick=finishSession;$('saveInvoice').onclick=()=>{let d=active();if(d?.started){if(!$('end').value)$('end').value=new Date().toTimeString().slice(0,5);prepareInvoiceConfirmation()}else toast('برای ثبت نهایی، ابتدا سانس را شروع و سپس پایان آن را ثبت کن.');};$('clearDraft').onclick=()=>{if(confirm('فاکتور فعلی پاک شود؟')){let d=active();state.drafts=state.drafts.filter(x=>x.id!==d.id);state.sessions=state.sessions.filter(s=>s.draftId!==d.id);save();activeDraft=null;createDraft();renderDevices()}};
 ['game','coffeeSize','coffeeBlend','tableNo','guests','customerName','customerId','discount','start','end'].forEach(id=>$(id).addEventListener('input',()=>{syncDraft();calc()}));['coffeeSize','coffeeBlend'].forEach(id=>$(id).addEventListener('change',()=>{syncDraft();calc()}));$('game').onchange=()=>{let g=$('game').value;renderCoffeeControls();$('guestLabel').textContent=['VIP','PS5','PS4','XBOX'].includes(g)?'تعداد دسته':'تعداد نفر';syncDraft();calc()};
 $('orderSearch').oninput=renderOrders;$('paymentFilter').onchange=renderOrders;$('debtorSearch').oninput=renderDebtors;
+$('manualDebtCustomer').onchange=()=>{const c=state.customers.find(x=>x.id===$('manualDebtCustomer').value);if(c)$('manualDebtName').value=c.name||''};
+$('addManualDebt').onclick=()=>{const selected=state.customers.find(x=>x.id===$('manualDebtCustomer').value),name=($('manualDebtName').value||selected?.name||'').trim(),amount=Number($('manualDebtAmount').value),date=fromJalali($('manualDebtDate').value||'');if(!name)return toast('نام مشتری را انتخاب یا وارد کن.');if(!Number.isFinite(amount)||amount<=0)return toast('مبلغ بدهی را درست وارد کن.');if(!date)return toast('تاریخ شمسی معتبر وارد کن.');state.manualDebts=state.manualDebts||[];state.manualDebts.push({id:uid(),customerId:selected?.id||'',name,contact:selected?.key||'',amount,date,createdAt:new Date().toISOString()});save();$('manualDebtName').value='';$('manualDebtAmount').value='';$('manualDebtCustomer').value='';$('manualDebtDate').value=toJalali(today());renderDebtors();toast('بدهی دستی ثبت شد.')};
 $('customerName').addEventListener('focus',openCustomerPicker);$('customerName').addEventListener('click',openCustomerPicker);$('customerName').addEventListener('input',()=>{renderCustomerOptions();openCustomerPicker();const c=matchInvoiceCustomer();if(c)syncDraft();else{$('customerId').value='';syncDraft()}});$('customerName').addEventListener('change',()=>{saveInvoiceCustomer();renderCustomerOptions()});$('customerName').addEventListener('blur',()=>{setTimeout(()=>{if(!document.activeElement?.closest?.('#customerPickerMenu')){saveInvoiceCustomer();closeCustomerPicker()}},160)});$('customerPickerToggle').onclick=()=>{$('customerPickerMenu').classList.contains('hidden')?openCustomerPicker():closeCustomerPicker()};document.addEventListener('click',e=>{if(!$('customerPicker')?.contains(e.target))closeCustomerPicker()});$('customerSearch').oninput=renderCustomers;$('cancelCustomerEdit').onclick=resetCustomerForm;$('saveCustomer').onclick=()=>{let n=$('custName').value.trim(),id=$('custId').value.trim();if(!n&&!id)return toast('نام یا شناسه را وارد کن.');const duplicate=state.customers.find(c=>c.id!==editingCustomerId&&id&&c.key===id);if(duplicate)return toast('این شماره یا شناسه قبلاً برای مشتری دیگری ثبت شده است.');if(editingCustomerId){let c=state.customers.find(x=>x.id===editingCustomerId);if(!c)return resetCustomerForm();const oldName=c.name,oldKey=c.key;c.name=n||'بدون نام';c.key=id;state.orders.forEach(o=>{if(o.customerKey===c.id){o.customerName=c.name;o.customerId=c.key||''}});resetCustomerForm();save();renderCustomerOptions();renderCustomers();renderOrders();toast('اطلاعات مشتری ویرایش شد.')}else{let c=findOrCreateCustomer(n,id);c.name=n||c.name;save();resetCustomerForm();renderCustomerOptions();renderCustomers();toast('مشتری ذخیره شد.')}};
 $('stockSearch').oninput=renderInventory;$('stockFilter').onchange=renderInventory;
 function applyStockAdjustment(kind){const id=$('stockAdjustProductId').value,p=state.products.find(x=>x.id===id),field=$(kind==='increase'?'stockIncreaseQty':'stockDecreaseQty'),qty=Number(field.value);if(!p)return toast('محصول انتخاب‌شده پیدا نشد.');if(!Number.isInteger(qty)||qty<=0)return toast('یک تعداد صحیح و بیشتر از صفر وارد کن.');if(kind==='decrease'&&qty>p.stock)return toast('تعداد کاهش از موجودی فعلی بیشتر است.');p.stock+=kind==='increase'?qty:-qty;save();renderInventory();renderProductSelect();$('stockAdjustCurrent').textContent=fmt(p.stock)+' عدد';field.value='';toast(kind==='increase'?'موجودی با موفقیت افزایش یافت.':'موجودی با موفقیت کاهش یافت.');}
@@ -714,7 +742,7 @@ document.body.classList.toggle('light',state.theme==='light');
 setInterval(()=>{if(document.visibilityState==='visible'){renderDevices();let s=state.sessions;if(s.some(x=>Date.now()-new Date(x.startedAt).getTime()>50*60000))toast('یادآوری: حداقل یک سانس بیش از ۵۰ دقیقه فعال است.')}},30000);
 window.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='n'){e.preventDefault();createDraft()}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'){e.preventDefault();syncDraft();save();toast('ذخیره شد.')}});
 $('adminBtn').addEventListener('click',()=>{});
-$('startSession').addEventListener('click',()=>{let d=active();if(d&&!state.sessions.some(s=>s.draftId===d.id)){state.sessions.push({draftId:d.id,device:d.device,startedAt:d.startedAt});save()}});
+
 
 renderAll();if(state.drafts.length)loadDraft(state.drafts[0]);else createDraft();
 
